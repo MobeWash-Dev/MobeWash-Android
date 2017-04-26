@@ -27,13 +27,12 @@
         android:text="Welcome UserLorem Ipsum Dolor Matel. Lorem Welcome and let’s play."
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
-    <Button
-        android:id="@+id/button"
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login using Facebook"
         android:layout_above="@+id/linearLayout"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
