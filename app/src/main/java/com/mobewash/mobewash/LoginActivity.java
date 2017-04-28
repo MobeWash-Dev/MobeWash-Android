@@ -34,6 +34,14 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Check if user is already logged in with Facebook
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        if (token != null) {
+            Intent loggedInIntent = new Intent(LoginActivity.this, LoggedInActivity.class);
+            startActivity(loggedInIntent);
+            finish();
+        }
+
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar_login);
 
         getSupportFragmentManager().addOnBackStackChangedListener(this);
@@ -91,8 +99,7 @@ public class LoginActivity extends AppCompatActivity
                             LoginFragment loginFragment = new LoginFragment();
                             Intent loggedInIntent = new Intent(LoginActivity.this, LoggedInActivity.class);
                             startActivity(loggedInIntent);
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.framelayout_fragment_container, loginFragment).commit();
+                            finish();
                         }
                     });
                 }
