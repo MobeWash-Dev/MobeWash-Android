@@ -6,12 +6,25 @@ import android.os.Bundle;
 
 import com.facebook.login.LoginResult;
 
-public class LoginActivity extends AppCompatActivity implements LoginFragment.OnLoginFragmentInteractionListener, FragmentManager.OnBackStackChangedListener {
+/**
+ * Controller for:
+ * LoginFragment
+ * EmailLoginFragment
+ * SignupFragment
+ */
+public class LoginActivity extends AppCompatActivity
+        implements LoginFragment.OnLoginFragmentInteractionListener,
+        EmailLoginFragment.OnEmailLoginFragmentInteractionListener,
+        SignupFragment.OnSignupFragmentInteractionListener,
+        FragmentManager.OnBackStackChangedListener {
+
+    private static final String TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         getSupportFragmentManager().addOnBackStackChangedListener(this);
         LoginFragment loginFragment = new LoginFragment();
         getSupportFragmentManager().beginTransaction()
@@ -19,37 +32,54 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
     }
 
     @Override
+    public void onBackStackChanged() {
+        attemptDisplayHomeButton();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        getSupportFragmentManager().popBackStack();
+        attemptDisplayHomeButton();
+        return true;
+    }
+
+    @Override
+    public void onSignup() {
+        // TODO: Handle Signup
+    }
+
+    @Override
+    public void onEmailLogin() {
+        // TODO: Handle Email Login
+    }
+
+    @Override
+    public void onFacebookLogin(LoginResult loginResult) {
+        // TODO: Handle Facebook Login
+    }
+
+    @Override
     public void onSignUpButtonClick() {
         SignupFragment signupFragment = new SignupFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.framelayout_fragment_container, signupFragment).addToBackStack("signup").commit();
+                .replace(R.id.framelayout_fragment_container, signupFragment)
+                .addToBackStack("signup").commit();
     }
 
     @Override
     public void onLoginButtonClick() {
         EmailLoginFragment emailLoginFragment = new EmailLoginFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.framelayout_fragment_container, emailLoginFragment).addToBackStack("emaillogin").commit();
+                .replace(R.id.framelayout_fragment_container, emailLoginFragment)
+                .addToBackStack("emaillogin").commit();
     }
 
-    @Override
-    public void onFacebookLogin(LoginResult loginResult) {
-
+    /**
+     * Only displays up button if not displaying the main LoginFragment
+     */
+    private void attemptDisplayHomeButton() {
+        boolean canBack = getSupportFragmentManager().getBackStackEntryCount() > 0;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(canBack);
     }
 
-    @Override
-    public void onBackStackChanged() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        LoginFragment loginFragment = new LoginFragment();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.framelayout_fragment_container, loginFragment).commit();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        return true;
-    }
 }

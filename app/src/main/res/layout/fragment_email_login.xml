@@ -5,33 +5,38 @@
     tools:context="com.mobewash.mobewash.EmailLoginFragment">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/edittext_login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/edittext_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/edittext_login_email"
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Login" />
+        android:layout_below="@+id/edittext_login_password"
+        android:layout_marginTop="16dp"
+        android:text="@string/login" />
 
 </RelativeLayout>

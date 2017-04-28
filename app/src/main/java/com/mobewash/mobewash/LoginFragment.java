@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.facebook.login.widget.LoginButton;
  * A simple {@link Fragment} subclass.
  */
 public class LoginFragment extends Fragment {
+    private static final String TAG = "LoginFragment";
 
     //
     // Facebook
@@ -67,12 +69,12 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onCancel() {
-
+                Log.i(TAG, "User cancelled Facebook login");
             }
 
             @Override
             public void onError(FacebookException error) {
-
+                Log.e(TAG, "Facebook error occurred", error);
             }
         });
 
