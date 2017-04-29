@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.mobewash.mobewash.dummylogin.DummyLoginServer;
 
@@ -77,26 +78,60 @@ public class LoginActivity extends AppCompatActivity
         AccessToken token = loginResult.getAccessToken();
 
         // Attempt serverside token login
+
+        //
+        // This is an imitation of a call to the back end for Facebook token authentication.
+        // I expect to make a POST request to the back end, sending the AccessToken and uid.
+        // I expect the server to return a JSON containing user info, errors, and a result.
+        // If the login was successful, redirect to a main activity.
+        // Otherwise, go back to the login page and log out of Facebook locally.
+        //
         DummyLoginServer.FBServerLogin fbServerLogin = new DummyLoginServer.FBServerLogin(token,
                 new DummyLoginServer.OnServerCompleteListener() {
             @Override
             public void onComplete(Exception err, boolean result) {
+
+                // Network call is complete
+
+                // Hide progress bar
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mProgressBar.setVisibility(View.GONE);
+                    }
+                });
                 if (err != null) {
                     Log.e(TAG, "FB Server Login Error", err);
+                    LoginManager.getInstance().logOut();
                     LoginFragment loginFragment = new LoginFragment();
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.framelayout_fragment_container, loginFragment).commit();
+
+                    // Indicate to the user that there was an error when logging in
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LoginActivity.this, "Sorry. An error occurred during login. Please try again", Toast.LENGTH_LONG).show();
+                        }
+                    });
                 } else if (!result) {
                     Log.d(TAG, "FB Server Login returned false result");
+                    LoginManager.getInstance().logOut();
                     LoginFragment loginFragment = new LoginFragment();
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.framelayout_fragment_container, loginFragment).commit();
+
+                    // Indicate to the user that the login was not successful
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LoginActivity.this, "Sorry. The login was unsuccessful. Please try again.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                 } else {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mProgressBar.setVisibility(View.GONE);
-                            LoginFragment loginFragment = new LoginFragment();
                             Intent loggedInIntent = new Intent(LoginActivity.this, LoggedInActivity.class);
                             startActivity(loggedInIntent);
                             finish();
@@ -105,10 +140,14 @@ public class LoginActivity extends AppCompatActivity
                 }
             }
         });
+
+        // Prepare UI for a network call
         mProgressBar.setVisibility(View.VISIBLE);
         BlankFragment blankFragment = new BlankFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.framelayout_fragment_container, blankFragment).commit();
+
+        // Start the network call
         new Thread(fbServerLogin).start();
     }
 
