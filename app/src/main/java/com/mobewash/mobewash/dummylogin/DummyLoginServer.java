@@ -1,6 +1,6 @@
 package com.mobewash.mobewash.dummylogin;
 
-import android.os.AsyncTask;
+import android.util.Log;
 
 import com.facebook.AccessToken;
 
@@ -9,6 +9,8 @@ import com.facebook.AccessToken;
  */
 
 public class DummyLoginServer {
+    private static final String TAG = "DummyLoginServer";
+
     public static class FBServerLogin implements Runnable {
 
         private OnServerCompleteListener listener;
@@ -25,6 +27,7 @@ public class DummyLoginServer {
             try {
                 Thread.sleep(2000);
                 listener.onComplete(null, true);
+                Log.d(TAG, "Facebook login with token: " + this.token.getToken());
             } catch (InterruptedException exception) {
                 listener.onComplete(exception, false);
             }
