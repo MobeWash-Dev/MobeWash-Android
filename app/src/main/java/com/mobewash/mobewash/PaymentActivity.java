@@ -1,16 +1,24 @@
 package com.mobewash.mobewash;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.BooleanResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 
+import com.google.android.gms.wallet.Cart;
+import com.google.android.gms.wallet.FullWallet;
+import com.google.android.gms.wallet.FullWalletRequest;
+import com.google.android.gms.wallet.IsReadyToPayRequest;
+import com.google.android.gms.wallet.LineItem;
+import com.google.android.gms.wallet.MaskedWallet;
 import com.google.android.gms.wallet.MaskedWalletRequest;
 import com.google.android.gms.wallet.PaymentMethodTokenizationParameters;
 import com.google.android.gms.wallet.PaymentMethodTokenizationType;
@@ -18,6 +26,17 @@ import com.google.android.gms.wallet.Wallet;
 import com.google.android.gms.wallet.WalletConstants;
 import com.google.android.gms.wallet.fragment.SupportWalletFragment;
 import com.google.android.gms.wallet.fragment.WalletFragmentInitParams;
+
+import org.json.JSONException;
+
+import com.stripe.android.Stripe;
+import com.stripe.android.TokenCallback;
+import com.stripe.android.model.Card;
+import com.stripe.android.view.CardInputWidget;
+import com.stripe.android.model.Token;
+import com.stripe.android.net.TokenParser;
+
+import static java.security.AccessController.getContext;
 
 public class PaymentActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
@@ -31,14 +50,32 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
     private static final int LOAD_MASKED_WALLET_REQUEST_CODE = 1000;
     private static final int LOAD_FULL_WALLET_REQUEST_CODE = 1001;
 
+    //keep track of your current environment,
+    //change to WalletConstants.ENVIRONMENT_PRODUCTION when you're ready to go live
+    public static final int mEnvironment = WalletConstants.ENVIRONMENT_TEST;
+
     private SupportWalletFragment walletFragment;
 
-    private GoogleApiClient googleApiClient;
+    private GoogleApiClient mgoogleApiClient;
+
+    // Idk how this works!!!!
+    private IsReadyToPayRequest readyToPayRequest;
+
+    CardInputWidget mCardInputWidget;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        googleApiClient = new GoogleApiClient.Builder(this)
+         //mCardInputWidget = (CardInputWidget) findViewById(R.id.card_input_widget);
+
+        readyToPayRequest = IsReadyToPayRequest.newBuilder()
+                .addAllowedCardNetwork(WalletConstants.CardNetwork.MASTERCARD)
+                .addAllowedCardNetwork(WalletConstants.CardNetwork.VISA)
+                .addAllowedCardNetwork(WalletConstants.CardNetwork.AMEX)
+                .addAllowedCardNetwork(WalletConstants.CardNetwork.DISCOVER)
+                .build();
+
+        mgoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Wallet.API, new Wallet.WalletOptions.Builder()
@@ -47,7 +84,7 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
                         .build())
                 .build();
 
-        Wallet.Payments.isReadyToPay(googleApiClient).setResultCallback(
+        Wallet.Payments.isReadyToPay(mgoogleApiClient,readyToPayRequest).setResultCallback(
                 new ResultCallback<BooleanResult>() {
                     @Override
                     public void onResult(@NonNull BooleanResult booleanResult) {
@@ -106,17 +143,56 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
 
     public void onStart() {
         super.onStart();
-        googleApiClient.connect();
+        mgoogleApiClient.connect();
     }
 
     public void onStop() {
         super.onStop();
-        googleApiClient.disconnect();
+        mgoogleApiClient.disconnect();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == LOAD_MASKED_WALLET_REQUEST_CODE) { // Unique, identifying constant
+            if (resultCode == Activity.RESULT_OK) {
+                MaskedWallet maskedWallet = data.getParcelableExtra(WalletConstants.EXTRA_MASKED_WALLET);
+                FullWalletRequest fullWalletRequest = FullWalletRequest.newBuilder()
+                        .setCart(Cart.newBuilder()
+                                .setCurrencyCode("USD")
+                                .setTotalPrice("20.00")
+                                .addLineItem(LineItem.newBuilder() // Identify item being purchased
+                                        .setCurrencyCode("USD")
+                                        .setQuantity("1")
+                                        .setDescription("Premium Llama Food")
+                                        .setTotalPrice("20.00")
+                                        .setUnitPrice("20.00")
+                                        .build())
+                                .build())
+                        .setGoogleTransactionId(maskedWallet.getGoogleTransactionId())
+                        .build();
+                Wallet.Payments.loadFullWallet(mgoogleApiClient, fullWalletRequest, LOAD_FULL_WALLET_REQUEST_CODE);
+            }
+        } else if (requestCode == LOAD_FULL_WALLET_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                FullWallet fullWallet = data.getParcelableExtra(WalletConstants.EXTRA_FULL_WALLET);
+                String tokenJSON = fullWallet.getPaymentMethodToken().getToken();
+
+                //A token will only be returned in production mode,
+                //i.e. WalletConstants.ENVIRONMENT_PRODUCTION
+                if (mEnvironment == WalletConstants.ENVIRONMENT_PRODUCTION) {
+                    try {
+                        Token token = TokenParser.parseToken(tokenJSON);
+                        // TODO: send token to your server
+                    } catch (JSONException jsonException) {
+                        // Log the error and notify Stripe helpß
+                    }
+                }
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override
@@ -127,4 +203,39 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
 
     @Override
     public void onConnectionSuspended(int i) {}
+
+
+    /* Deciding which save card method to use*/
+    public void onClickSomething(String cardNumber, Integer cardExpMonth, Integer cardExpYear, String cardCVC) {
+        Card card = new Card(
+                cardNumber,
+                cardExpMonth,
+                cardExpYear,
+                cardCVC
+        );
+
+        card.validateNumber();
+        card.validateCVC();
+    }
+
+    private void saveCard() {
+        Card card = mCardInputWidget.getCard();
+        if (card == null) {
+            return;
+        }
+
+        //Incorrect method call, needs a reference to context
+        Stripe stripe = new Stripe(getParent(), "pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+        stripe.createToken(
+                card,
+                new TokenCallback() {
+                    public void onSuccess(Token token) {
+                        // Send token to your server
+                    }
+                    public void onError(Exception error) {
+                        // Show localized error message
+                    }
+                }
+        );
+    }
 }
