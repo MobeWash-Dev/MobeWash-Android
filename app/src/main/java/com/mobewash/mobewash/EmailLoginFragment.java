@@ -4,9 +4,16 @@ package com.mobewash.mobewash;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.mobewash.mobewash.dummylogin.DummyLoginServer;
 
 
 /**
@@ -14,21 +21,39 @@ import android.view.ViewGroup;
  */
 public class EmailLoginFragment extends Fragment {
 
+    private static final String TAG = "EmailLoginFragment";
+
     //
     // Member Variables
     //
     private OnEmailLoginFragmentInteractionListener mListener;
 
+    private Button mLoginButton;
+    private EditText mEmailEditText;
+    private EditText mPasswordEditText;
+
     public EmailLoginFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_email_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_email_login, container, false);
+        mLoginButton = (Button) view.findViewById(R.id.button_login);
+        mEmailEditText = (EditText) view.findViewById(R.id.edittext_login_email);
+        mPasswordEditText = (EditText) view.findViewById(R.id.edittext_login_password);
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = mEmailEditText.getText().toString();
+                String password = mPasswordEditText.getText().toString();
+                if (loginIsValid(email, password)) {
+                    mListener.onEmailLogin(email, password);
+                }
+            }
+        });
+        return view;
     }
 
     @Override
@@ -48,8 +73,14 @@ public class EmailLoginFragment extends Fragment {
         mListener = null;
     }
 
+    private boolean loginIsValid(String email, String password) {
+        boolean emailValid = !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        boolean passwordValid = !TextUtils.isEmpty(password);
+        return emailValid && passwordValid;
+    }
+
     public interface OnEmailLoginFragmentInteractionListener {
-        void onEmailLogin();
+        void onEmailLogin(String email, String password);
     }
 
 }

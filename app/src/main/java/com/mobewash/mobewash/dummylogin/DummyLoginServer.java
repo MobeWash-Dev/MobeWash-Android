@@ -3,6 +3,7 @@ package com.mobewash.mobewash.dummylogin;
 import android.util.Log;
 
 import com.facebook.AccessToken;
+import com.facebook.Profile;
 
 /**
  * Created by sidney on 4/28/17.
@@ -33,6 +34,37 @@ public class DummyLoginServer {
             }
         }
 
+    }
+
+    public static class EmailServerLogin implements Runnable {
+
+        private static final String EMAIL = "bob@gmail.com";
+        private static final String PASS = "asdf";
+
+        private OnServerCompleteListener listener;
+        private String email;
+        private String password;
+
+        public EmailServerLogin(String email, String password, OnServerCompleteListener listener) {
+            this.listener = listener;
+            this.email = email;
+            this.password = password;
+        }
+
+        @Override
+        public void run() {
+            // Simulate network
+            try {
+                Thread.sleep(2000);
+                if (this.email.equals(EMAIL) && this.password.equals(PASS)) {
+                    listener.onComplete(null, true);
+                } else {
+                    listener.onComplete(null, false);
+                }
+            } catch (InterruptedException exception) {
+                listener.onComplete(exception, false);
+            }
+        }
     }
 
     public interface OnServerCompleteListener {
