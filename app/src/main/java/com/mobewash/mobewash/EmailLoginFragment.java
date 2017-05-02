@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.mobewash.mobewash.dummylogin.DummyLoginServer;
 
@@ -76,6 +77,9 @@ public class EmailLoginFragment extends Fragment {
     private boolean loginIsValid(String email, String password) {
         boolean emailValid = !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
         boolean passwordValid = !TextUtils.isEmpty(password);
+        if (!emailValid || !passwordValid) {
+            Toast.makeText(getContext(), "Must enter a valid email and password", Toast.LENGTH_LONG).show();
+        }
         return emailValid && passwordValid;
     }
 

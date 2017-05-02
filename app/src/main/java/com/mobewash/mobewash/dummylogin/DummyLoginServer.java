@@ -26,7 +26,7 @@ public class DummyLoginServer {
         public void run() {
             // Simulate network
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 listener.onComplete(null, true);
                 Log.d(TAG, "Facebook login with token: " + this.token.getToken());
             } catch (InterruptedException exception) {
@@ -55,12 +55,35 @@ public class DummyLoginServer {
         public void run() {
             // Simulate network
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 if (this.email.equals(EMAIL) && this.password.equals(PASS)) {
                     listener.onComplete(null, true);
                 } else {
                     listener.onComplete(null, false);
                 }
+            } catch (InterruptedException exception) {
+                listener.onComplete(exception, false);
+            }
+        }
+    }
+
+    public static class SignUpServerLogin implements Runnable {
+        private OnServerCompleteListener listener;
+        private String email;
+        private String password;
+
+        public SignUpServerLogin(String email, String password, OnServerCompleteListener listener) {
+            this.listener = listener;
+            this.email = email;
+            this.password = password;
+        }
+
+        @Override
+        public void run() {
+            // Simulate network
+            try {
+                Thread.sleep(1000);
+                listener.onComplete(null, true);
             } catch (InterruptedException exception) {
                 listener.onComplete(exception, false);
             }
