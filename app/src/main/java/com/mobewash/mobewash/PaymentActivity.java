@@ -66,7 +66,7 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-         //mCardInputWidget = (CardInputWidget) findViewById(R.id.card_input_widget);
+      /*   mCardInputWidget = (CardInputWidget) findViewById(R.id.card_input_widget);
 
         readyToPayRequest = IsReadyToPayRequest.newBuilder()
                 .addAllowedCardNetwork(WalletConstants.CardNetwork.MASTERCARD)
@@ -101,10 +101,10 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
                         }
                     }
                 }
-        );
+        );*/
 
     }
-
+    /*
     public void showAndroidPay() {
         setContentView(R.layout.activity_payment);
 
@@ -139,7 +139,7 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
         walletFragment.initialize(initParams);
 
 
-    }
+    }*/
 
     public void onStart() {
         super.onStart();
@@ -155,7 +155,7 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == LOAD_MASKED_WALLET_REQUEST_CODE) { // Unique, identifying constant
+        /*if (requestCode == LOAD_MASKED_WALLET_REQUEST_CODE) { // Unique, identifying constant
             if (resultCode == Activity.RESULT_OK) {
                 MaskedWallet maskedWallet = data.getParcelableExtra(WalletConstants.EXTRA_MASKED_WALLET);
                 FullWalletRequest fullWalletRequest = FullWalletRequest.newBuilder()
@@ -192,7 +192,7 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
-        }
+        }*/
     }
 
     @Override
@@ -204,38 +204,4 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
     @Override
     public void onConnectionSuspended(int i) {}
 
-
-    /* Deciding which save card method to use*/
-    public void onClickSomething(String cardNumber, Integer cardExpMonth, Integer cardExpYear, String cardCVC) {
-        Card card = new Card(
-                cardNumber,
-                cardExpMonth,
-                cardExpYear,
-                cardCVC
-        );
-
-        card.validateNumber();
-        card.validateCVC();
-    }
-
-    private void saveCard() {
-        Card card = mCardInputWidget.getCard();
-        if (card == null) {
-            return;
-        }
-
-        //Incorrect method call, needs a reference to context
-        Stripe stripe = new Stripe(getParent(), "pk_test_6pRNASCoBOKtIshFeQd4XMUh");
-        stripe.createToken(
-                card,
-                new TokenCallback() {
-                    public void onSuccess(Token token) {
-                        // Send token to your server
-                    }
-                    public void onError(Exception error) {
-                        // Show localized error message
-                    }
-                }
-        );
-    }
 }
