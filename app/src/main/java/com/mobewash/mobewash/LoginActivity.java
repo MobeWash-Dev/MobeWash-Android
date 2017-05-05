@@ -64,8 +64,63 @@ public class LoginActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSignup() {
-        // TODO: Handle Signup
+    public void onSignup(String email, String password) {
+        // Attempt serverside email sign up
+
+        //
+        // This is an imitation of a call to the back end for email sign up.
+        // I expect to make a POST request to the back end, sending an email and password.
+        // I expect the server to return a JSON containing user info, errors, and a result.
+        // If the sign up was successful, redirect to a main activity.
+        // Otherwise, stay on the email login page.
+        //
+        DummyLoginServer.SignUpServerLogin signUpServer = new DummyLoginServer.SignUpServerLogin(
+                email, password, new DummyLoginServer.OnServerCompleteListener() {
+            @Override
+            public void onComplete(Exception err, boolean result) {
+                // Network call is complete
+
+                // Hide progress bar
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mProgressBar.setVisibility(View.GONE);
+                    }
+                });
+                if (err != null) {
+                    Log.e(TAG, "Email sign up error", err);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LoginActivity.this, "Sorry. An error occurred during sign up. Please try again", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else if (!result) {
+                    Log.d(TAG, "Email sign up returned false result");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LoginActivity.this, "Invalid email or password.", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent loggedInIntent = new Intent(LoginActivity.this, LoggedInActivity.class);
+                            startActivity(loggedInIntent);
+                            finish();
+                        }
+                    });
+                }
+            }
+        });
+
+        // Prepare UI for a network call
+        mProgressBar.setVisibility(View.VISIBLE);
+
+        // Start the network call
+        new Thread(signUpServer).start();
     }
 
     @Override
