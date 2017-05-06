@@ -1,6 +1,7 @@
 package com.mobewash.mobewash;
 
 import android.app.Activity;
+import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -38,13 +39,18 @@ import com.stripe.android.net.TokenParser;
 
 import static java.security.AccessController.getContext;
 
-public class PaymentActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+public class PaymentActivity extends AppCompatActivity
+        implements PaymentFragment.OnPaymentFragmentInteractionListener,
+        FragmentManager.OnBackStackChangedListener
+        /*GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener
+        */{
 
     // Set up tag for logging
     public static final String TAG = "Payment Activity";
 
     // You will need to use your live API key even while testing
-    public static final String PUBLISHABLE_KEY = "pk_live_XXX";
+    private static final String PUBLISHABLE_KEY = "pk_live_XXX";
 
     // Unique identifiers for asynchronous requests:
     private static final int LOAD_MASKED_WALLET_REQUEST_CODE = 1000;
@@ -58,16 +64,21 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
 
     private GoogleApiClient mgoogleApiClient;
 
-    // Idk how this works!!!!
+    // Need to figure out how this works
     private IsReadyToPayRequest readyToPayRequest;
 
-    CardInputWidget mCardInputWidget;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-      /*   mCardInputWidget = (CardInputWidget) findViewById(R.id.card_input_widget);
+        setContentView(R.layout.activity_payment);
 
+        getSupportFragmentManager().addOnBackStackChangedListener(this);
+        PaymentFragment paymentFragment = new PaymentFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment, paymentFragment).commit();
+
+      /*
         readyToPayRequest = IsReadyToPayRequest.newBuilder()
                 .addAllowedCardNetwork(WalletConstants.CardNetwork.MASTERCARD)
                 .addAllowedCardNetwork(WalletConstants.CardNetwork.VISA)
@@ -143,13 +154,14 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
 
     public void onStart() {
         super.onStart();
-        mgoogleApiClient.connect();
+        //mgoogleApiClient.connect();
     }
 
     public void onStop() {
         super.onStop();
-        mgoogleApiClient.disconnect();
+        //mgoogleApiClient.disconnect();
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -195,6 +207,31 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
         }*/
     }
 
+
+    @Override
+    public void onBackStackChanged() {
+        attemptDisplayHomeButton();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        getSupportFragmentManager().popBackStack();
+        attemptDisplayHomeButton();
+        return true;
+    }
+
+    /**
+     * Only displays up button if not displaying the main LoginFragment
+     */
+    private void attemptDisplayHomeButton() {
+        boolean canBack = getSupportFragmentManager().getBackStackEntryCount() > 0;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(canBack);
+    }
+
+    public void onBookPressed(Card card){
+
+    }
+    /*
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {}
 
@@ -203,5 +240,5 @@ public class PaymentActivity extends AppCompatActivity implements GoogleApiClien
 
     @Override
     public void onConnectionSuspended(int i) {}
-
+    */
 }
