@@ -36,9 +36,9 @@ public class PaymentFragment extends Fragment {
     public static final String TAG = "Payment Fragment";
 
     // Views
-    private EditText mCardInput;
-    private EditText mCardCVC;
-    private EditText mExpirationDate;
+    private View mCardNumber;
+    private View mCardCVC;
+    private View mExpDate;
     private Button mBookButton;
     private EditText mCountry;
     private EditText mZipCode;
@@ -81,6 +81,24 @@ public class PaymentFragment extends Fragment {
         mExpirationDate = (EditText) view.findViewById(R.id.ExpirationDate);*/
         mCountry = (EditText) view.findViewById(R.id.Country);
         mZipCode = (EditText) view.findViewById(R.id.ZipCode);
+
+        mCountry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    mCountry.setHint("");
+                else
+                    mCountry.setHint("Country");
+            }
+        });
+
+        mZipCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    mZipCode.setHint("");
+                else
+                    mZipCode.setHint("Zip Code");
+            }
+        });
 
         // Set up Book Button
         mBookButton = (Button) view.findViewById(R.id.BookButton);
