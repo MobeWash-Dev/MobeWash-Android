@@ -35,7 +35,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-wallet:10.2.4'
     compile 'com.google.android.gms:play-services-auth:10.2.4'
     compile 'com.google.android.gms:play-services-base:10.2.4'
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:support-v4:25.3.0'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    testCompile 'junit:junit:4.12'
 }

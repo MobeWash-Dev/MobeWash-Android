@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -43,17 +46,34 @@ public class SignupFragment extends Fragment {
         mEmailEditText = (EditText) view.findViewById(R.id.edittext_signup_email);
         mPasswordEditText = (EditText) view.findViewById(R.id.edittext_signup_password);
         mSignUpButton = (Button) view.findViewById(R.id.button_signup);
+        mPasswordEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
+        mPasswordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (event == null) {
+                    if (actionId == EditorInfo.IME_ACTION_GO) {
+                        attemptSignUp();
+                    }
+                }
+                return false;
+            }
+        });
+
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = mEmailEditText.getText().toString();
-                String password = mPasswordEditText.getText().toString();
-                if (loginIsValid(email, password)) {
-                    mListener.onSignup(email, password);
-                }
+                attemptSignUp();
             }
         });
         return view;
+    }
+
+    private void attemptSignUp() {
+        String email = mEmailEditText.getText().toString();
+        String password = mPasswordEditText.getText().toString();
+        if (loginIsValid(email, password)) {
+            mListener.onSignup(email, password);
+        }
     }
 
     @Override

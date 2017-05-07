@@ -38,8 +38,8 @@ public class LoginActivity extends AppCompatActivity
         // Check if user is already logged in with Facebook
         AccessToken token = AccessToken.getCurrentAccessToken();
         if (token != null) {
-            Intent loggedInIntent = new Intent(LoginActivity.this, LoggedInActivity.class);
-            startActivity(loggedInIntent);
+            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(mainIntent);
             finish();
         }
 
@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity
         getSupportFragmentManager().addOnBackStackChangedListener(this);
         LoginFragment loginFragment = new LoginFragment();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.framelayout_fragment_container, loginFragment).commit();
+                .add(R.id.framelayout_main_fragment_container, loginFragment).commit();
     }
 
     @Override
@@ -107,8 +107,8 @@ public class LoginActivity extends AppCompatActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Intent loggedInIntent = new Intent(LoginActivity.this, LoggedInActivity.class);
-                            startActivity(loggedInIntent);
+                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(mainIntent);
                             finish();
                         }
                     });
@@ -169,8 +169,8 @@ public class LoginActivity extends AppCompatActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Intent loggedInIntent = new Intent(LoginActivity.this, SelectCompany.class);
-                            startActivity(loggedInIntent);
+                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(mainIntent);
                             finish();
                         }
                     });
@@ -217,7 +217,7 @@ public class LoginActivity extends AppCompatActivity
                     LoginManager.getInstance().logOut();
                     LoginFragment loginFragment = new LoginFragment();
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.framelayout_fragment_container, loginFragment).commit();
+                            .replace(R.id.framelayout_main_fragment_container, loginFragment).commit();
 
                     // Indicate to the user that there was an error when logging in
                     runOnUiThread(new Runnable() {
@@ -231,7 +231,7 @@ public class LoginActivity extends AppCompatActivity
                     LoginManager.getInstance().logOut();
                     LoginFragment loginFragment = new LoginFragment();
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.framelayout_fragment_container, loginFragment).commit();
+                            .replace(R.id.framelayout_main_fragment_container, loginFragment).commit();
 
                     // Indicate to the user that the login was not successful
                     runOnUiThread(new Runnable() {
@@ -244,8 +244,8 @@ public class LoginActivity extends AppCompatActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Intent loggedInIntent = new Intent(LoginActivity.this, LoggedInActivity.class);
-                            startActivity(loggedInIntent);
+                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(mainIntent);
                             finish();
                         }
                     });
@@ -257,7 +257,7 @@ public class LoginActivity extends AppCompatActivity
         mProgressBar.setVisibility(View.VISIBLE);
         BlankFragment blankFragment = new BlankFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.framelayout_fragment_container, blankFragment).commit();
+                .replace(R.id.framelayout_main_fragment_container, blankFragment).commit();
 
         // Start the network call
         new Thread(fbServerLogin).start();
@@ -267,7 +267,7 @@ public class LoginActivity extends AppCompatActivity
     public void onSignUpButtonClick() {
         SignupFragment signupFragment = new SignupFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.framelayout_fragment_container, signupFragment)
+                .replace(R.id.framelayout_main_fragment_container, signupFragment)
                 .addToBackStack("signup").commit();
     }
 
@@ -275,7 +275,7 @@ public class LoginActivity extends AppCompatActivity
     public void onLoginButtonClick() {
         EmailLoginFragment emailLoginFragment = new EmailLoginFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.framelayout_fragment_container, emailLoginFragment)
+                .replace(R.id.framelayout_main_fragment_container, emailLoginFragment)
                 .addToBackStack("emaillogin").commit();
     }
 

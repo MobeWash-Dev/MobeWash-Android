@@ -1,16 +1,12 @@
 package com.mobewash.mobewash;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.View.OnClickListener;
 
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
 import android.widget.EditText;
 
-public class DetailsActivity extends FragmentActivity {
+public class DetailsActivity extends FragmentActivity implements DetailsFragment.OnDetailsFragmentInteractionListener {
 
     private EditText FirstNameText;
     private EditText LastNameText;
@@ -25,7 +21,7 @@ public class DetailsActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
+/*
         //Validate that the inputs to the EditTexts are all valid
         FirstNameText = (EditText) findViewById(R.id.FirstName);
         LastNameText = (EditText) findViewById(R.id.LastName);
@@ -78,10 +74,15 @@ public class DetailsActivity extends FragmentActivity {
                     ColorText.setError("Invalid");
                 }
             }
-        });
+        });*/
 
     }
 
+    @Override
+    public void onDetailsFragmentInteraction() {
+
+    }
+/*
     // validating Names
     private boolean isValidName(String name) {
         if (name != null && name.length() > 0) {
@@ -107,5 +108,5 @@ public class DetailsActivity extends FragmentActivity {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-
+*/
 }
