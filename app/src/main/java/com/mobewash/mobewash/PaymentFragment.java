@@ -116,12 +116,13 @@ public class PaymentFragment extends Fragment {
 
                // if(checkInput(card,cvc,exp)){
                     // Set Address for Country and Zip Code
-                    userCard.setAddressCountry(countryCode);
+                    /*userCard.setAddressCountry(countryCode);
                     userCard.setAddressZip(zipCode);
 
                     if(userCard.validateCard()) {
                         mListener.onBookPressed(userCard);
-                    }
+                    }*/
+                    mListener.onBookPressed(null);
                 //}
 
                // else{

@@ -1,16 +1,18 @@
 package com.mobewash.mobewash;
 
-import android.net.Uri;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.facebook.login.LoginManager;
 import com.stripe.android.model.Card;
 
 public class MainActivity extends AppCompatActivity
         implements FragmentManager.OnBackStackChangedListener,
         DetailsFragment.OnDetailsFragmentInteractionListener,
-        PaymentFragment.OnPaymentFragmentInteractionListener {
+        PaymentFragment.OnPaymentFragmentInteractionListener,
+        BookedFragment.OnBookedFragmentInteractionListener {
 
     private static final String TAG = "MainActivity";
 
@@ -45,6 +47,19 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(canBack);
     }
 
+    /**
+     * Handles user log out
+     */
+    private void logout() {
+        LoginManager.getInstance().logOut();
+
+        // TODO clear local user data
+
+        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(loginIntent);
+        finish();
+    }
+
     @Override
     public void onDetailsFragmentInteraction() {
         PaymentFragment paymentFragment = new PaymentFragment();
@@ -55,6 +70,19 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBookPressed(Card card) {
+        BookedFragment bookedFragment = new BookedFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.framelayout_main_fragment_container, bookedFragment)
+                .addToBackStack("booked").commit();
+    }
 
+    @Override
+    public void onBookedFragmentInteraction() {
+
+    }
+
+    @Override
+    public void onLogoutPressed() {
+        logout();
     }
 }
