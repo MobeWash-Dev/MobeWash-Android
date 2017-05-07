@@ -1,0 +1,144 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:wallet="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:stripe="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mobewash.mobewash.PaymentFragment">
+
+<!--
+
+    Android Pay Fragment
+
+    <fragment
+        android:id="@+id/wallet_fragment"
+        android:name="com.google.android.gms.wallet.fragment.SupportWalletFragment"
+        android:layout_width="335dp"
+        android:layout_height="39dp"
+        wallet:environment="test"
+        wallet:fragmentMode="buyButton"
+        tools:layout_editor_absoluteY="397dp"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout="@layout/fragment_payment" />
+    />-->
+
+    <!--Car and Wash Details-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="225dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="17dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/CarView"
+            android:layout_width="162dp"
+            android:layout_height="165dp"
+            android:contentDescription=""
+            stripe:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal"
+            tools:ignore="ContentDescription"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="17dp"
+            app:layout_constraintTop_toTopOf="@+id/DetailsView" />
+
+        <ListView
+            android:id="@+id/DetailsView"
+            android:layout_width="125dp"
+            android:layout_height="170dp"
+            android:headerDividersEnabled="true"
+            tools:layout_constraintTop_creator="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="27dp"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="16dp"
+            tools:ignore="RtlHardcoded" />
+    </android.support.constraint.ConstraintLayout>
+
+    <!--Book Button-->
+    <Button
+        android:id="@+id/BookButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="Book"
+        tools:ignore="HardcodedText"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="22dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <!--Card Details-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="83dp"
+        android:orientation="vertical"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="148dp"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <com.stripe.android.view.CardInputWidget
+            android:id="@+id/card_input_widget"
+            android:layout_width="322dp"
+            android:layout_height="wrap_content"
+            stripe:cardTextErrorColor="@android:color/holo_red_dark"
+            stripe:cardTint="@android:color/holo_blue_light"
+            tools:layout_editor_absoluteX="52dp"
+            tools:layout_editor_absoluteY="379dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/Country"
+                android:layout_width="171dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Country"
+                android:inputType="text"
+                tools:ignore="HardcodedText"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="357dp"
+                android:textColorHint="@drawable/selector"
+                />
+
+            <EditText
+                android:id="@+id/ZipCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Zip Code"
+                android:inputType="numberDecimal"
+                tools:ignore="HardcodedText"
+                android:textColorHint="@drawable/selector"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

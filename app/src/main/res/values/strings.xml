@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">MobeWash</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_welcome">Welcome User</string>
     <string name="login_description">Lorem Ipsum Dolor Matel. Lorem Welcome and let’s play.</string>
     <string name="login">Login</string>
