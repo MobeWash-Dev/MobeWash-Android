@@ -145,10 +145,10 @@ public class DetailsFragment extends Fragment {
                     hasError = true;
                 }
 
-                /*if (!hasError) {
+                if (!hasError) {
                     mListener.onDetailsFragmentInteraction();
-                }*/
-                mListener.onDetailsFragmentInteraction();
+                }
+                //mListener.onDetailsFragmentInteraction();
             }
         });
 
