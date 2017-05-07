@@ -7,11 +7,15 @@ import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobewash.mobewash.dummylogin.DummyLoginServer;
@@ -44,17 +48,34 @@ public class EmailLoginFragment extends Fragment {
         mLoginButton = (Button) view.findViewById(R.id.button_login);
         mEmailEditText = (EditText) view.findViewById(R.id.edittext_login_email);
         mPasswordEditText = (EditText) view.findViewById(R.id.edittext_login_password);
+        mPasswordEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
+        mPasswordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (event == null) {
+                    if (actionId == EditorInfo.IME_ACTION_GO) {
+                        attemptLogin();
+                    }
+                }
+                return false;
+            }
+        });
+
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = mEmailEditText.getText().toString();
-                String password = mPasswordEditText.getText().toString();
-                if (loginIsValid(email, password)) {
-                    mListener.onEmailLogin(email, password);
-                }
+                attemptLogin();
             }
         });
         return view;
+    }
+
+    private void attemptLogin() {
+        String email = mEmailEditText.getText().toString();
+        String password = mPasswordEditText.getText().toString();
+        if (loginIsValid(email, password)) {
+            mListener.onEmailLogin(email, password);
+        }
     }
 
     @Override
