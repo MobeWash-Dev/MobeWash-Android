@@ -169,7 +169,7 @@ public class LoginActivity extends AppCompatActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Intent loggedInIntent = new Intent(LoginActivity.this, LoggedInActivity.class);
+                            Intent loggedInIntent = new Intent(LoginActivity.this, SelectCompany.class);
                             startActivity(loggedInIntent);
                             finish();
                         }
