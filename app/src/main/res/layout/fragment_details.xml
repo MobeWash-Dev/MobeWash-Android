@@ -1,0 +1,152 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mobewash.mobewash.DetailsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp">
+        <TextView
+            android:id="@+id/TextView"
+            style="@android:style/Widget.AutoCompleteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:text="Details"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/linearlayout_names"
+            android:layout_below="@+id/TextView"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/FirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="textPersonName"
+                android:ems="8"
+                android:hint="First Name" />
+            <EditText
+                android:id="@+id/LastName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="textPersonName"
+                android:ems="8"
+                android:hint="Last Name" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/Phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/linearlayout_names"
+            android:layout_marginTop="8dp"
+            android:ems="16"
+            android:inputType="textPersonName"
+            android:hint="Phone" />
+
+        <EditText
+            android:id="@+id/Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/Phone"
+            android:layout_marginTop="8dp"
+            android:ems="30"
+            android:inputType="textPersonName"
+            android:hint="Email" />
+
+        <ImageView
+            android:id="@+id/imageview_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Email"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:contentDescription="image" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imageview_details"
+            android:layout_marginTop="8dp"
+            android:id="@+id/linearlayout_car"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/Make"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:hint="Car Make" />
+
+            <EditText
+                android:id="@+id/Model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:hint="Model" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/Color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/linearlayout_car"
+            android:layout_marginTop="8dp"
+            android:ems="8"
+            android:inputType="textPersonName"
+            android:hint="Color" />
+
+        <EditText
+            android:id="@+id/License"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/Color"
+            android:layout_marginTop="8dp"
+            android:ems="16"
+            android:inputType="textPersonName"
+            android:hint="Last 4 Digits of License" />
+
+        <EditText
+            android:id="@+id/ExtraInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/License"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Extra Location Info (Floor, Level)" />
+
+        <Button
+            android:id="@+id/button_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/ExtraInfo"
+            android:text="Next" />
+    </RelativeLayout>
+
+</ScrollView>
