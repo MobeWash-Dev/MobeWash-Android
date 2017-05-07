@@ -3,7 +3,6 @@ package com.mobewash.mobewash.dummylogin;
 import android.util.Log;
 
 import com.facebook.AccessToken;
-import com.facebook.Profile;
 
 /**
  * Created by sidney on 4/28/17.
@@ -38,8 +37,8 @@ public class DummyLoginServer {
 
     public static class EmailServerLogin implements Runnable {
 
-        private static final String EMAIL = "bob@gmail.com";
-        private static final String PASS = "asdf";
+        private static final String EMAIL = "123@gmail.com";
+        private static final String PASS = "123";
 
         private OnServerCompleteListener listener;
         private String email;
