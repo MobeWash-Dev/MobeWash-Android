@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.regex.Matcher;
@@ -16,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DetailsFragment.OnFragmentInteractionListener} interface
+ * {@link OnDetailsFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link DetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -41,8 +42,9 @@ public class DetailsFragment extends Fragment {
     private EditText ColorText;
     private EditText LicenceText;
 
+    private Button mNextButton;
 
-    private OnFragmentInteractionListener mListener;
+    private OnDetailsFragmentInteractionListener mListener;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -90,33 +92,41 @@ public class DetailsFragment extends Fragment {
         ColorText = (EditText) view.findViewById(R.id.Color);
         LicenceText = (EditText) view.findViewById(R.id.License);
 
-        view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        mNextButton = (Button) view.findViewById(R.id.button_next);
+        mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View v) {
+
+                boolean hasError = false;
 
                 final String email = EmailText.getText().toString();
                 if (!isValidEmail(email)) {
                     EmailText.setError("Invalid Email");
+                    hasError = true;
                 }
 
                 final String firstName = FirstNameText.getText().toString();
                 if (!isValidName(firstName)) {
                     FirstNameText.setError("Invalid Name");
+                    hasError = true;
                 }
 
                 final String lastName = LastNameText.getText().toString();
                 if (!isValidName(lastName)) {
                     LastNameText.setError("Invalid Name");
+                    hasError = true;
                 }
 
                 final String phone = PhoneText.getText().toString();
                 if (!isValidPhone(phone)) {
                     PhoneText.setError("Invalid Phone, Please Enter 10 Digit phone number");
+                    hasError = true;
                 }
 
                 final String License = LicenceText.getText().toString();
                 if (!isValidName(License)) {
                     LicenceText.setError("Invalid License");
+                    hasError = true;
                 }
 
                 final String Make = MakeText.getText().toString();
@@ -124,13 +134,21 @@ public class DetailsFragment extends Fragment {
                 final String Color = ColorText.getText().toString();
                 if (!isValidName(Make)) {
                     MakeText.setError("Invalid");
+                    hasError = true;
                 }
                 if (!isValidName(Model)) {
                     ModelText.setError("Invalid");
+                    hasError = true;
                 }
                 if (!isValidName(Color)) {
                     ColorText.setError("Invalid");
+                    hasError = true;
                 }
+
+                /*if (!hasError) {
+                    mListener.onDetailsFragmentInteraction();
+                }*/
+                mListener.onDetailsFragmentInteraction();
             }
         });
 
@@ -163,21 +181,14 @@ public class DetailsFragment extends Fragment {
         return matcher.matches();
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnDetailsFragmentInteractionListener) {
+            mListener = (OnDetailsFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnDetailsFragmentInteractionListener");
         }
     }
 
@@ -197,8 +208,8 @@ public class DetailsFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnDetailsFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onDetailsFragmentInteraction();
     }
 }

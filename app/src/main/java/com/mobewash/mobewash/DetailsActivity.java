@@ -1,17 +1,12 @@
 package com.mobewash.mobewash;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View.OnClickListener;
 
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
 import android.widget.EditText;
 
-public class DetailsActivity extends FragmentActivity implements DetailsFragment.OnFragmentInteractionListener {
+public class DetailsActivity extends FragmentActivity implements DetailsFragment.OnDetailsFragmentInteractionListener {
 
     private EditText FirstNameText;
     private EditText LastNameText;
@@ -84,7 +79,7 @@ public class DetailsActivity extends FragmentActivity implements DetailsFragment
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onDetailsFragmentInteraction() {
 
     }
 /*
