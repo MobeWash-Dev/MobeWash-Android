@@ -73,11 +73,6 @@ public class PaymentActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_payment);
 
-        getSupportFragmentManager().addOnBackStackChangedListener(this);
-        PaymentFragment paymentFragment = new PaymentFragment();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment, paymentFragment).commit();
-
       /*
         readyToPayRequest = IsReadyToPayRequest.newBuilder()
                 .addAllowedCardNetwork(WalletConstants.CardNetwork.MASTERCARD)

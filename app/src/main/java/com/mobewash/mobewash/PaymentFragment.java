@@ -82,7 +82,7 @@ public class PaymentFragment extends Fragment {
         mCountry = (EditText) view.findViewById(R.id.Country);
         mZipCode = (EditText) view.findViewById(R.id.ZipCode);
 
-        mCountry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+      /*  mCountry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
                     mCountry.setHint("");
@@ -98,7 +98,7 @@ public class PaymentFragment extends Fragment {
                 else
                     mZipCode.setHint("Zip Code");
             }
-        });
+        });*/
 
         // Set up Book Button
         mBookButton = (Button) view.findViewById(R.id.BookButton);

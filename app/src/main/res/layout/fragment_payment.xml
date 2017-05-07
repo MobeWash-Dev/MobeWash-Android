@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Country"
-                android:inputType="numberDecimal"
+                android:inputType="text"
                 tools:ignore="HardcodedText"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="357dp"
@@ -132,8 +132,11 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Zip Code"
-                android:inputType="date"
-                tools:ignore="HardcodedText" />
+                android:inputType="numberDecimal"
+                tools:ignore="HardcodedText"
+                android:textColorHint="@drawable/selector"
+                />
+
         </LinearLayout>
 
     </LinearLayout>
