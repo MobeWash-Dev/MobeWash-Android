@@ -149,14 +149,14 @@ public class DetailsFragment extends Fragment {
 
                 if (!hasError) {
                     mListener.onDetailsFragmentInteraction();
-                    sharedData.FirstName = FirstNameText.getText().toString();
-                    sharedData.LastName = LastNameText.getText().toString();
-                    sharedData.Phone = PhoneText.getText().toString();
-                    sharedData.Email = EmailText.getText().toString();
-                    sharedData.carMake = MakeText.getText().toString();
-                    sharedData.carModel = ModelText.getText().toString();
-                    sharedData.carColor = ColorText.getText().toString();
-                    sharedData.Licence = LicenceText.getText().toString();
+                    sharedData.setFirstName(FirstNameText.getText().toString());
+                    sharedData.setLastName(LastNameText.getText().toString());
+                    sharedData.setPhone(PhoneText.getText().toString());
+                    sharedData.setEmail(EmailText.getText().toString());
+                    sharedData.setCarMake(MakeText.getText().toString());
+                    sharedData.setCarModel(ModelText.getText().toString());
+                    sharedData.setCarColor(ColorText.getText().toString());
+                    sharedData.setLicence(LicenceText.getText().toString());
                 }
                 //mListener.onDetailsFragmentInteraction();
             }
