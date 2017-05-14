@@ -15,7 +15,7 @@ public class JsonTestActivity extends AppCompatActivity {
         restRequester.get("http://10.0.2.2:3000/", new RestRequester.OnRequestCompleteListener() {
             @Override
             public void onRequestComplete(Exception err, JSONObject jsonObject) {
-                
+
             }
         });
     }

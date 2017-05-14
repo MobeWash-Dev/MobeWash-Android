@@ -32,6 +32,7 @@ public class RestRequester {
                 listener.onRequestComplete(error, null);
             }
         });
+        mRequestQueue.addToRequestQueue(jsonObjectRequest);
     }
 
     interface OnRequestCompleteListener {
