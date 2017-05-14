@@ -46,6 +46,8 @@ public class DetailsFragment extends Fragment {
 
     private OnDetailsFragmentInteractionListener mListener;
 
+    DataSingletonClass sharedData = DataSingletonClass.getInstance();
+
     public DetailsFragment() {
         // Required empty public constructor
     }
@@ -147,6 +149,14 @@ public class DetailsFragment extends Fragment {
 
                 if (!hasError) {
                     mListener.onDetailsFragmentInteraction();
+                    sharedData.setFirstName(FirstNameText.getText().toString());
+                    sharedData.setLastName(LastNameText.getText().toString());
+                    sharedData.setPhone(PhoneText.getText().toString());
+                    sharedData.setEmail(EmailText.getText().toString());
+                    sharedData.setCarMake(MakeText.getText().toString());
+                    sharedData.setCarModel(ModelText.getText().toString());
+                    sharedData.setCarColor(ColorText.getText().toString());
+                    sharedData.setLicence(LicenceText.getText().toString());
                 }
                 //mListener.onDetailsFragmentInteraction();
             }
