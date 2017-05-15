@@ -44,25 +44,31 @@ public class CompanyData {
     public String toString() {
         return "{\n"
                 + "uid: " + getUid() + "\n"
-                + "name:"  + getName() + "\n"
+                + "name: "  + getName() + "\n"
                 + "location: " + getLocation() + "\n"
                 + "setting: " + getSetting() + "\n}";
     }
 
     private class Setting {
-        private Range opDays;
+        private int[] opDays;
         private int washCap;
-        private Range range;
+        private int[] range;
 
         Setting(JSONObject jsonObject) throws JSONException {
             JSONArray opDaysArray = jsonObject.getJSONArray("opDays");
-            this.opDays = new Range(opDaysArray);
+            this.opDays = new int[opDaysArray.length()];
+            for (int i = 0; i < opDaysArray.length(); i++) {
+                this.opDays[i] = opDaysArray.getInt(i);
+            }
             this.washCap = jsonObject.getInt("washCap");
             JSONArray rangeArray = jsonObject.getJSONArray("range");
-            this.range = new Range(rangeArray);
+            this.range = new int[rangeArray.length()];
+            for (int i = 0; i < rangeArray.length(); i++) {
+                this.range[i] = rangeArray.getInt(i);
+            }
         }
 
-        public Range getOpDays() {
+        public int[] getOpDays() {
             return opDays;
         }
 
@@ -70,43 +76,26 @@ public class CompanyData {
             return washCap;
         }
 
-        public Range getRange() {
+        public int[] getRange() {
             return range;
         }
 
         @Override
         public String toString() {
-            return "{\n"
-                    + "opDays: " + getOpDays() + "\n"
-                    + "washCap: " + getWashCap() + "\n"
-                    + "range: " + getRange() + "\n}";
-        }
-    }
-
-    private class Range {
-        private int start;
-        private int end;
-
-        Range(JSONArray jsonArray) throws JSONException {
-            this.start = jsonArray.getInt(0);
-            if (jsonArray.length() > 1) {
-                this.end = jsonArray.getInt(1);
-            } else {
-                this.end = this.start;
+            String opDaysString = "[" + getOpDays()[0];
+            for (int i = 1; i < getOpDays().length; i++) {
+                opDaysString += ", " + getOpDays()[i];
             }
-        }
-
-        public int getStart() {
-            return start;
-        }
-
-        public int getEnd() {
-            return end;
-        }
-
-        @Override
-        public String toString() {
-            return "[" + getStart() + ", " + getEnd() + "]";
+            opDaysString += "]";
+            String rangeString = "[" + getRange()[0];
+            for (int i = 1; i < getRange().length; i++) {
+                rangeString += ", " + getRange()[i];
+            }
+            rangeString += "]";
+            return "{\n"
+                    + "opDays: " + opDaysString + "\n"
+                    + "washCap: " + getWashCap() + "\n"
+                    + "range: " + rangeString + "\n}";
         }
     }
 
