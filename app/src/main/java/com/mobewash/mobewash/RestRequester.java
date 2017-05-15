@@ -5,8 +5,10 @@ import android.content.Context;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -35,7 +37,26 @@ public class RestRequester {
         mRequestQueue.addToRequestQueue(jsonObjectRequest);
     }
 
+    public void getArray(String url, final OnArrayRequestCompleteListener listener) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                listener.onArrayRequestComplete(null, response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                listener.onArrayRequestComplete(error, null);
+            }
+        });
+        mRequestQueue.addToRequestQueue(jsonArrayRequest);
+    }
+
     interface OnRequestCompleteListener {
         void onRequestComplete(Exception err, JSONObject jsonObject);
+    }
+
+    interface OnArrayRequestCompleteListener {
+        void onArrayRequestComplete(Exception err, JSONArray jsonArray);
     }
 }
