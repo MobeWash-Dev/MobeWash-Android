@@ -4,7 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.mobewash.mobewash.models.BookingData;
 import com.mobewash.mobewash.models.CompanyData;
+import com.mobewash.mobewash.models.WashService;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,6 +41,19 @@ public class JsonTestActivity extends AppCompatActivity {
                     Log.d(TAG, jsonArray.toString());
                     ArrayList<CompanyData> companyDataList = JSONParser.parseCompanyData(jsonArray);
                     Log.d(TAG, companyDataList.toString());
+                }
+            }
+        });
+
+        restRequester.getArray("http://10.0.2.2:3000/services", new RestRequester.OnArrayRequestCompleteListener() {
+            @Override
+            public void onArrayRequestComplete(Exception err, JSONArray jsonArray) {
+                if (err != null) {
+                    Log.e(TAG, "ARRAY REQUEST ERROR", err);
+                } else {
+                    Log.d(TAG, jsonArray.toString());
+                    ArrayList<WashService> washServiceList = JSONParser.parseWashService(jsonArray);
+                    Log.d(TAG, washServiceList.toString());
                 }
             }
         });
