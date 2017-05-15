@@ -3,6 +3,7 @@ package com.mobewash.mobewash;
 import android.content.Context;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -23,5 +24,7 @@ public class RequestQueueSingleton {
         INSTANCE.add(jsObjRequest);
     }
 
-
+    public void addToRequestQueue(JsonArrayRequest jsonArrayRequest) {
+        INSTANCE.add(jsonArrayRequest);
+    }
 }

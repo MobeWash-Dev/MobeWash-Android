@@ -20,7 +20,33 @@ public class CompanyData {
         this.uid = jsonObject.getInt("uid");
         this.name = jsonObject.getString("name");
         this.location = jsonObject.getString("location");
-        this.setting = new Setting(jsonObject);
+        JSONObject settingsJson = jsonObject.getJSONObject("setting");
+        this.setting = new Setting(settingsJson);
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public Setting getSetting() {
+        return setting;
+    }
+
+    @Override
+    public String toString() {
+        return "{\n"
+                + "uid: " + getUid() + "\n"
+                + "name:"  + getName() + "\n"
+                + "location: " + getLocation() + "\n"
+                + "setting: " + getSetting() + "\n}";
     }
 
     private class Setting {
@@ -35,6 +61,26 @@ public class CompanyData {
             JSONArray rangeArray = jsonObject.getJSONArray("range");
             this.range = new Range(rangeArray);
         }
+
+        public Range getOpDays() {
+            return opDays;
+        }
+
+        public int getWashCap() {
+            return washCap;
+        }
+
+        public Range getRange() {
+            return range;
+        }
+
+        @Override
+        public String toString() {
+            return "{\n"
+                    + "opDays: " + getOpDays() + "\n"
+                    + "washCap: " + getWashCap() + "\n"
+                    + "range: " + getRange() + "\n}";
+        }
     }
 
     private class Range {
@@ -43,7 +89,24 @@ public class CompanyData {
 
         Range(JSONArray jsonArray) throws JSONException {
             this.start = jsonArray.getInt(0);
-            this.end = jsonArray.getInt(1);
+            if (jsonArray.length() > 1) {
+                this.end = jsonArray.getInt(1);
+            } else {
+                this.end = this.start;
+            }
+        }
+
+        public int getStart() {
+            return start;
+        }
+
+        public int getEnd() {
+            return end;
+        }
+
+        @Override
+        public String toString() {
+            return "[" + getStart() + ", " + getEnd() + "]";
         }
     }
 
