@@ -10,15 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.stripe.android.Stripe;
 import com.stripe.android.TokenCallback;
+import com.stripe.android.exception.CardException;
 import com.stripe.android.model.Card;
 import com.stripe.android.model.Token;
 import com.stripe.android.view.CardInputWidget;
 
 import java.security.PublicKey;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -86,19 +90,50 @@ public class PaymentFragment extends Fragment {
         mBookButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                Boolean hasError = false;
+
+                // Handle Card Input
                 userCard = mCardInputWidget.getCard();
-                String zipCode = mZipCode.getText().toString();
-                String countryCode = mCountry.getText().toString();
 
-                userCard.setAddressCountry("US");
-                userCard.setAddressZip(zipCode);
-
-                if(userCard.validateCard()) {
-                    mListener.onBookPressed(userCard);
+                if(userCard == null){
+                    Toast.makeText(getActivity(),
+                            "Please Fill Out Fields",
+                            Toast.LENGTH_LONG
+                    ).show();
+                    hasError = true;
                 }
 
-                else{
-                    // Show error message
+                // Handle Country Input
+                String countryCode = mCountry.getText().toString();
+
+                if(countryCode.isEmpty()) {
+                    mCountry.setError("Required");
+                    hasError = true;
+                }
+
+                // Handle Zip Code Input
+                String zipCode = mZipCode.getText().toString();
+
+                if(zipCode.isEmpty()) {
+                    mZipCode.setError("Required");
+                    hasError = true;
+                }
+
+
+                // Error Check Input
+                if(!hasError) {
+                    userCard.setAddressCountry(countryCode);
+                    userCard.setAddressZip(zipCode);
+
+                    if (userCard.validateCard()) {
+
+                        mListener.onBookPressed(userCard);
+
+                    } else {
+
+                        // Show error message
+
+                    }
                 }
             }
         });
@@ -126,37 +161,4 @@ public class PaymentFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-    private boolean checkInput(String card, String cvc, String date){
-        boolean cardCheck = !TextUtils.isEmpty(card);
-        boolean cvcCheck = !TextUtils.isEmpty(cvc);
-        boolean dateCheck = !TextUtils.isEmpty(date);
-        return cardCheck && cvcCheck &&dateCheck;
-    }
-
-    /* Deciding which save card method to use*/
-    private boolean validateCard(String cardNumber, Integer cardExpMonth, Integer cardExpYear, String cardCVC,
-                                String billingName, String addressLine1, String addressLine2, String addressCity,
-                                String addressState, String addressZip, String addressCountry) {
-        userCard = new Card(
-                cardNumber,
-                cardExpMonth,
-                cardExpYear,
-                cardCVC,
-                billingName,
-                addressLine1,
-                addressLine2,
-                addressCity,
-                addressState,
-                addressZip,
-                addressCountry,
-                "USD"
-        );
-        if(userCard.validateNumber() && userCard.validateCVC() && userCard.validateExpiryDate()){
-
-        }
-
-        return true;
-    }
-
 }

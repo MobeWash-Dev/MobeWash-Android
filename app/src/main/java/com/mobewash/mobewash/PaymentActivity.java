@@ -78,7 +78,10 @@ public class PaymentActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_payment);
 
+        // Set API key
         api_key = getResources().getString(R.string.stripe_pub_key);
+
+
       /*
         readyToPayRequest = IsReadyToPayRequest.newBuilder()
                 .addAllowedCardNetwork(WalletConstants.CardNetwork.MASTERCARD)
