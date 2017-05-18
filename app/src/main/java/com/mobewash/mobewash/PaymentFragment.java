@@ -17,6 +17,8 @@ import com.stripe.android.model.Card;
 import com.stripe.android.model.Token;
 import com.stripe.android.view.CardInputWidget;
 
+import java.security.PublicKey;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -71,34 +73,11 @@ public class PaymentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_payment, container, false);
+        View view = inflater.inflate(R.layout.fragment_payment, container, false);
 
-        mCardInputWidget = (CardInputWidget) getActivity().findViewById(R.id.card_input_widget);
-
-        // Set up Text Boxes
-     /*   mCardInput = (EditText) view.findViewById(R.id.CardNumber);
-        mCardCVC = (EditText) view.findViewById(R.id.CVC);
-        mExpirationDate = (EditText) view.findViewById(R.id.ExpirationDate);*/
+        mCardInputWidget = (CardInputWidget) view.findViewById(R.id.card_input_widget);
         mCountry = (EditText) view.findViewById(R.id.Country);
         mZipCode = (EditText) view.findViewById(R.id.ZipCode);
-
-      /*  mCountry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus)
-                    mCountry.setHint("");
-                else
-                    mCountry.setHint("Country");
-            }
-        });
-
-        mZipCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus)
-                    mZipCode.setHint("");
-                else
-                    mZipCode.setHint("Zip Code");
-            }
-        });*/
 
         // Set up Book Button
         mBookButton = (Button) view.findViewById(R.id.BookButton);
@@ -107,27 +86,20 @@ public class PaymentFragment extends Fragment {
         mBookButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                // Read in the strings for card info
-             /*   String card= mCardInput.getText().toString();
-                String cvc= mCardCVC.getText().toString();
-                String exp= mExpirationDate.getText().toString();*/
+                userCard = mCardInputWidget.getCard();
                 String zipCode = mZipCode.getText().toString();
                 String countryCode = mCountry.getText().toString();
 
-               // if(checkInput(card,cvc,exp)){
-                    // Set Address for Country and Zip Code
-                    /*userCard.setAddressCountry(countryCode);
-                    userCard.setAddressZip(zipCode);
+                userCard.setAddressCountry("US");
+                userCard.setAddressZip(zipCode);
 
-                    if(userCard.validateCard()) {
-                        mListener.onBookPressed(userCard);
-                    }*/
-                    mListener.onBookPressed(null);
-                //}
+                if(userCard.validateCard()) {
+                    mListener.onBookPressed(userCard);
+                }
 
-               // else{
+                else{
                     // Show error message
-                //}
+                }
             }
         });
 
@@ -187,27 +159,4 @@ public class PaymentFragment extends Fragment {
         return true;
     }
 
-
-    private void getCard(){
-        Card card = mCardInputWidget.getCard();
-        if (userCard == null) {
-            return;
-        }
-    }
-    private void chargeCard() {
-
-
-        Stripe stripe = new Stripe(getView().getContext(), "pk_test_6pRNASCoBOKtIshFeQd4XMUh");
-        stripe.createToken(
-                userCard,
-                new TokenCallback() {
-                    public void onSuccess(Token token) {
-                        // Send token to your server
-                    }
-                    public void onError(Exception error) {
-                        // Show localized error message
-                    }
-                }
-        );
-    }
 }
