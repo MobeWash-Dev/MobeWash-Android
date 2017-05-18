@@ -38,15 +38,21 @@
         <!-- Our Activities -->
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".PaymentActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".DetailsActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".SelectCompany"></activity>
+        <activity android:name=".SelectCompany" />
         <activity android:name=".JsonTestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DateTimeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
