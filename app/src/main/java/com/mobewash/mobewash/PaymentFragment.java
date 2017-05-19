@@ -8,8 +8,11 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.stripe.android.Stripe;
@@ -21,8 +24,9 @@ import com.stripe.android.view.CardInputWidget;
 
 import java.security.PublicKey;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -42,12 +46,11 @@ public class PaymentFragment extends Fragment {
     public static final String TAG = "Payment Fragment";
 
     // Views
-    private View mCardNumber;
-    private View mCardCVC;
-    private View mExpDate;
     private Button mBookButton;
     private EditText mCountry;
     private EditText mZipCode;
+    private Spinner mCountrySpinner;
+    private ArrayAdapter<String> mAdapter;
 
     private OnPaymentFragmentInteractionListener mListener;
 
@@ -70,7 +73,6 @@ public class PaymentFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -79,9 +81,19 @@ public class PaymentFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_payment, container, false);
 
+        // Find views
         mCardInputWidget = (CardInputWidget) view.findViewById(R.id.card_input_widget);
-        mCountry = (EditText) view.findViewById(R.id.Country);
         mZipCode = (EditText) view.findViewById(R.id.ZipCode);
+        mCountrySpinner = (Spinner) view.findViewById(R.id.CountrySpinner);
+
+        //Create Array and Adapter
+        ArrayList<String> spinnerArray = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.country_list)));
+        mAdapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item,spinnerArray);
+        //Set dropdown type
+        mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Set up Spinner
+        mCountrySpinner.setAdapter(mAdapter);
 
         // Set up Book Button
         mBookButton = (Button) view.findViewById(R.id.BookButton);
@@ -104,12 +116,7 @@ public class PaymentFragment extends Fragment {
                 }
 
                 // Handle Country Input
-                String countryCode = mCountry.getText().toString();
-
-                if(countryCode.isEmpty()) {
-                    mCountry.setError("Required");
-                    hasError = true;
-                }
+                String countryCode = mCountrySpinner.getSelectedItem().toString();
 
                 // Handle Zip Code Input
                 String zipCode = mZipCode.getText().toString();
