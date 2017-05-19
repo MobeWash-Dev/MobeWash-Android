@@ -104,14 +104,7 @@ public class LoginActivity extends AppCompatActivity
                         }
                     });
                 } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(mainIntent);
-                            finish();
-                        }
-                    });
+                    finishLogin();
                 }
             }
         });
@@ -166,14 +159,7 @@ public class LoginActivity extends AppCompatActivity
                         }
                     });
                 } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(mainIntent);
-                            finish();
-                        }
-                    });
+                    finishLogin();
                 }
             }
         });
@@ -241,14 +227,7 @@ public class LoginActivity extends AppCompatActivity
                         }
                     });
                 } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(mainIntent);
-                            finish();
-                        }
-                    });
+                    finishLogin();
                 }
             }
         });
@@ -261,6 +240,17 @@ public class LoginActivity extends AppCompatActivity
 
         // Start the network call
         new Thread(fbServerLogin).start();
+    }
+
+    private void finishLogin() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(mainIntent);
+                finish();
+            }
+        });
     }
 
     @Override

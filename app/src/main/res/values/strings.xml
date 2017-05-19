@@ -12,4 +12,7 @@
     <string name="fb_login_protocol_scheme">fb152395371962312</string>
     <string name="map_geo_search_input_hint">Start typing company here</string>
     <string name="map_list_header_txt">Start booking</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
