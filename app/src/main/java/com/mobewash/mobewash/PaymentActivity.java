@@ -1,6 +1,7 @@
 package com.mobewash.mobewash;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -37,6 +38,9 @@ import com.stripe.android.view.CardInputWidget;
 import com.stripe.android.model.Token;
 import com.stripe.android.net.TokenParser;
 
+import java.security.AccessController;
+import java.security.PublicKey;
+
 import static java.security.AccessController.getContext;
 
 public class PaymentActivity extends AppCompatActivity
@@ -50,8 +54,7 @@ public class PaymentActivity extends AppCompatActivity
     public static final String TAG = "Payment Activity";
 
     // You will need to use your live API key even while testing
-    private static final String PUBLISHABLE_KEY = "pk_live_XXX";
-
+    private String api_key;
     // Unique identifiers for asynchronous requests:
     private static final int LOAD_MASKED_WALLET_REQUEST_CODE = 1000;
     private static final int LOAD_FULL_WALLET_REQUEST_CODE = 1001;
@@ -60,18 +63,24 @@ public class PaymentActivity extends AppCompatActivity
     //change to WalletConstants.ENVIRONMENT_PRODUCTION when you're ready to go live
     public static final int mEnvironment = WalletConstants.ENVIRONMENT_TEST;
 
-    private SupportWalletFragment walletFragment;
+    //Keep track of Access Control
 
+
+    // Create Wallet Fragment and Google API client for Android Pay
+    private SupportWalletFragment walletFragment;
     private GoogleApiClient mgoogleApiClient;
 
     // Need to figure out how this works
     private IsReadyToPayRequest readyToPayRequest;
 
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_payment);
+
+        // Set API key
+        api_key = getResources().getString(R.string.stripe_pub_key);
+
 
       /*
         readyToPayRequest = IsReadyToPayRequest.newBuilder()
@@ -110,42 +119,6 @@ public class PaymentActivity extends AppCompatActivity
         );*/
 
     }
-    /*
-    public void showAndroidPay() {
-        setContentView(R.layout.activity_payment);
-
-        walletFragment =
-                (SupportWalletFragment) getSupportFragmentManager().findFragmentById(R.id.wallet_fragment);
-
-        MaskedWalletRequest maskedWalletRequest = MaskedWalletRequest.newBuilder()
-
-                // Request credit card tokenization with Stripe by specifying tokenization parameters:
-                .setPaymentMethodTokenizationParameters(PaymentMethodTokenizationParameters.newBuilder()
-                        .setPaymentMethodTokenizationType(PaymentMethodTokenizationType.PAYMENT_GATEWAY)
-                        .addParameter("gateway", "stripe")
-                        .addParameter("stripe:publishableKey", PUBLISHABLE_KEY)
-                        .addParameter("stripe:version", com.stripe.android.BuildConfig.VERSION_NAME)
-                        .build())
-
-                // You want the shipping address:
-                .setShippingAddressRequired(true)
-
-                // Price set as a decimal:
-                .setEstimatedTotalPrice("20.00")
-                .setCurrencyCode("USD")
-                .build();
-
-        // Set the parameters:
-        WalletFragmentInitParams initParams = WalletFragmentInitParams.newBuilder()
-                .setMaskedWalletRequest(maskedWalletRequest)
-                .setMaskedWalletRequestCode(LOAD_MASKED_WALLET_REQUEST_CODE)
-                .build();
-
-        // Initialize the fragment:
-        walletFragment.initialize(initParams);
-
-
-    }*/
 
     public void onStart() {
         super.onStart();
@@ -224,7 +197,26 @@ public class PaymentActivity extends AppCompatActivity
     }
 
     public void onBookPressed(Card card){
-
+        Stripe stripe = new Stripe(PaymentActivity.this, api_key);
+        stripe.createToken(
+                card,
+                new TokenCallback() {
+                    public void onSuccess(Token token) {
+                        // Send token to your server
+                        Toast.makeText(PaymentActivity.this,
+                                "Sent Token!",
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                    public void onError(Exception error) {
+                        // Show localized error message
+                        Toast.makeText(PaymentActivity.this,
+                                "Error Processing Card. Please Try Again",
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                }
+        );
     }
     /*
     @Override
@@ -236,4 +228,41 @@ public class PaymentActivity extends AppCompatActivity
     @Override
     public void onConnectionSuspended(int i) {}
     */
+
+     /*
+    public void showAndroidPay() {
+        setContentView(R.layout.activity_payment);
+
+        walletFragment =
+                (SupportWalletFragment) getSupportFragmentManager().findFragmentById(R.id.wallet_fragment);
+
+        MaskedWalletRequest maskedWalletRequest = MaskedWalletRequest.newBuilder()
+
+                // Request credit card tokenization with Stripe by specifying tokenization parameters:
+                .setPaymentMethodTokenizationParameters(PaymentMethodTokenizationParameters.newBuilder()
+                        .setPaymentMethodTokenizationType(PaymentMethodTokenizationType.PAYMENT_GATEWAY)
+                        .addParameter("gateway", "stripe")
+                        .addParameter("stripe:publishableKey", PUBLISHABLE_KEY)
+                        .addParameter("stripe:version", com.stripe.android.BuildConfig.VERSION_NAME)
+                        .build())
+
+                // You want the shipping address:
+                .setShippingAddressRequired(true)
+
+                // Price set as a decimal:
+                .setEstimatedTotalPrice("20.00")
+                .setCurrencyCode("USD")
+                .build();
+
+        // Set the parameters:
+        WalletFragmentInitParams initParams = WalletFragmentInitParams.newBuilder()
+                .setMaskedWalletRequest(maskedWalletRequest)
+                .setMaskedWalletRequestCode(LOAD_MASKED_WALLET_REQUEST_CODE)
+                .build();
+
+        // Initialize the fragment:
+        walletFragment.initialize(initParams);
+
+
+    }*/
 }

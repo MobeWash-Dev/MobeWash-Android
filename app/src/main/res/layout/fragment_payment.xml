@@ -86,17 +86,17 @@
     <!--Card Details-->
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="83dp"
-        android:orientation="vertical"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
+        android:layout_height="100dp"
         android:layout_marginBottom="148dp"
-        app:layout_constraintLeft_toLeftOf="parent">
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1">
 
         <com.stripe.android.view.CardInputWidget
             android:id="@+id/card_input_widget"
@@ -105,8 +105,7 @@
             stripe:cardTextErrorColor="@android:color/holo_red_dark"
             stripe:cardTint="@android:color/holo_blue_light"
             tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="379dp"
-            />
+            tools:layout_editor_absoluteY="379dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,22 +119,20 @@
                 android:ems="10"
                 android:hint="Country"
                 android:inputType="text"
+                android:textColorHint="@drawable/selector"
                 tools:ignore="HardcodedText"
                 tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="357dp"
-                android:textColorHint="@drawable/selector"
-                />
+                tools:layout_editor_absoluteY="357dp" />
 
             <EditText
                 android:id="@+id/ZipCode"
-                android:layout_width="wrap_content"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Zip Code"
                 android:inputType="numberDecimal"
-                tools:ignore="HardcodedText"
                 android:textColorHint="@drawable/selector"
-                />
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
