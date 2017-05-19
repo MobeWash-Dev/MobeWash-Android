@@ -10,6 +10,7 @@ import com.stripe.android.model.Card;
 
 public class MainActivity extends AppCompatActivity
         implements FragmentManager.OnBackStackChangedListener,
+        BookAWashFragment.OnBookAWashFragmentInteractionListener,
         DetailsFragment.OnDetailsFragmentInteractionListener,
         PaymentFragment.OnPaymentFragmentInteractionListener,
         BookedFragment.OnBookedFragmentInteractionListener {
@@ -22,9 +23,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         getSupportFragmentManager().addOnBackStackChangedListener(this);
-        DetailsFragment detailsFragment = new DetailsFragment();
+        BookAWashFragment bookAWashFragment = new BookAWashFragment();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.framelayout_main_fragment_container, detailsFragment).commit();
+                .add(R.id.framelayout_main_fragment_container, bookAWashFragment).commit();
     }
 
     @Override
@@ -84,5 +85,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLogoutPressed() {
         logout();
+    }
+
+    @Override
+    public void onBookAWashButtonClick() {
+        DetailsFragment detailsFragment = new DetailsFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.framelayout_main_fragment_container, detailsFragment)
+                .addToBackStack("details").commit();
     }
 }

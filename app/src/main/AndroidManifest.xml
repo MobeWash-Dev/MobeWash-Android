@@ -39,6 +39,11 @@
         <activity
             android:name=".LoginActivity"
             android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".PaymentActivity"
@@ -46,13 +51,7 @@
         <activity android:name=".DetailsActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SelectCompany"></activity>
-        <activity android:name=".JsonTestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".JsonTestActivity"></activity>
     </application>
 
 </manifest>
