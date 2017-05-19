@@ -13,6 +13,7 @@
     <string name="map_geo_search_input_hint">Start typing company here</string>
     <string name="map_list_header_txt">Start booking</string>
 
+<<<<<<< development
     <string-array name="country_list">
         <item>United States</item>
         <item>Australia</item>
