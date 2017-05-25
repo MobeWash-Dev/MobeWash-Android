@@ -137,10 +137,9 @@ public class PaymentFragment extends Fragment {
                     hasError = true;
                 }
 
-
                 // Error Check Input
                 if(!hasError) {
-                    userCard.setAddressCountry(country);
+                    userCard.setAddressCountry(code);
                     userCard.setAddressZip(zipCode);
 
                     if (userCard.validateCard()) {
