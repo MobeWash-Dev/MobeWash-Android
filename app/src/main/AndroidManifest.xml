@@ -38,24 +38,27 @@
         <!-- Our Activities -->
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name=".PaymentActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".SelectCompany">
+
+        </activity>
+        <activity android:name=".JsonTestActivity" />
+        <activity android:name=".CompanyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".PaymentActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".DetailsActivity" />
         <activity android:name=".MainActivity" >
             <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".LandingActivity" />
         </activity>
-        <activity android:name=".SelectCompany" />
-        <activity android:name=".JsonTestActivity" />
         <activity
             android:name=".LandingActivity"
             android:label="@string/app_name"
