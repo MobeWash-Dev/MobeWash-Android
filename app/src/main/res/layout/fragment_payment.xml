@@ -69,21 +69,22 @@
     <!--Book Button-->
     <Button
         android:id="@+id/BookButton"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:text="Book"
-        tools:ignore="HardcodedText"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="22dp"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginEnd="22dp"
+        android:layout_marginStart="22dp"
+        android:text="Book"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="HardcodedText"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
 
     <!--Card Details-->
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="100dp"
@@ -112,17 +113,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/Country"
-                android:layout_width="171dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Country"
-                android:inputType="text"
-                android:textColorHint="@drawable/selector"
-                tools:ignore="HardcodedText"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="357dp" />
+            <Spinner
+                android:id="@+id/CountrySpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="394dp" />
 
             <EditText
                 android:id="@+id/ZipCode"
