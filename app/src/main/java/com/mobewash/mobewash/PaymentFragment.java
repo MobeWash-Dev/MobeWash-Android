@@ -22,10 +22,10 @@ import com.stripe.android.model.Card;
 import com.stripe.android.model.Token;
 import com.stripe.android.view.CardInputWidget;
 
-import java.security.PublicKey;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,7 +87,17 @@ public class PaymentFragment extends Fragment {
         mCountrySpinner = (Spinner) view.findViewById(R.id.CountrySpinner);
 
         //Create Array and Adapter
-        ArrayList<String> spinnerArray = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.country_list)));
+
+        final String[] countryCode = getResources().getStringArray(R.array.country_code);
+        final String[] countries = getResources().getStringArray(R.array.country_list);
+        final HashMap<String, String> countryToCode = new HashMap<String, String>();
+        for(int i = 0; i < countryCode.length; i++) {
+            countryToCode.put(countries[i], countryCode[i]);
+
+
+        }
+
+        ArrayList<String> spinnerArray = new ArrayList<String>(Arrays.asList(countries));
         mAdapter = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item,spinnerArray);
         //Set dropdown type
         mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -116,7 +126,8 @@ public class PaymentFragment extends Fragment {
                 }
 
                 // Handle Country Input
-                String countryCode = mCountrySpinner.getSelectedItem().toString();
+                String country = mCountrySpinner.getSelectedItem().toString();
+                String code = countryToCode.get(country);
 
                 // Handle Zip Code Input
                 String zipCode = mZipCode.getText().toString();
@@ -129,7 +140,7 @@ public class PaymentFragment extends Fragment {
 
                 // Error Check Input
                 if(!hasError) {
-                    userCard.setAddressCountry(countryCode);
+                    userCard.setAddressCountry(country);
                     userCard.setAddressZip(zipCode);
 
                     if (userCard.validateCard()) {
