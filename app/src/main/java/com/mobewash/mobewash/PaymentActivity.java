@@ -45,10 +45,9 @@ import static java.security.AccessController.getContext;
 
 public class PaymentActivity extends AppCompatActivity
         implements PaymentFragment.OnPaymentFragmentInteractionListener,
-        FragmentManager.OnBackStackChangedListener
-        /*GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener
-        */{
+        FragmentManager.OnBackStackChangedListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener{
 
     // Set up tag for logging
     public static final String TAG = "Payment Activity";
@@ -62,9 +61,6 @@ public class PaymentActivity extends AppCompatActivity
     //keep track of your current environment,
     //change to WalletConstants.ENVIRONMENT_PRODUCTION when you're ready to go live
     public static final int mEnvironment = WalletConstants.ENVIRONMENT_TEST;
-
-    //Keep track of Access Control
-
 
     // Create Wallet Fragment and Google API client for Android Pay
     private SupportWalletFragment walletFragment;
@@ -82,7 +78,6 @@ public class PaymentActivity extends AppCompatActivity
         api_key = getResources().getString(R.string.stripe_pub_key);
 
 
-      /*
         readyToPayRequest = IsReadyToPayRequest.newBuilder()
                 .addAllowedCardNetwork(WalletConstants.CardNetwork.MASTERCARD)
                 .addAllowedCardNetwork(WalletConstants.CardNetwork.VISA)
@@ -116,18 +111,18 @@ public class PaymentActivity extends AppCompatActivity
                         }
                     }
                 }
-        );*/
+        );
 
     }
 
     public void onStart() {
         super.onStart();
-        //mgoogleApiClient.connect();
+        mgoogleApiClient.connect();
     }
 
     public void onStop() {
         super.onStop();
-        //mgoogleApiClient.disconnect();
+        mgoogleApiClient.disconnect();
     }
 
 
@@ -135,7 +130,7 @@ public class PaymentActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        /*if (requestCode == LOAD_MASKED_WALLET_REQUEST_CODE) { // Unique, identifying constant
+        if (requestCode == LOAD_MASKED_WALLET_REQUEST_CODE) { // Unique, identifying constant
             if (resultCode == Activity.RESULT_OK) {
                 MaskedWallet maskedWallet = data.getParcelableExtra(WalletConstants.EXTRA_MASKED_WALLET);
                 FullWalletRequest fullWalletRequest = FullWalletRequest.newBuilder()
@@ -165,14 +160,23 @@ public class PaymentActivity extends AppCompatActivity
                     try {
                         Token token = TokenParser.parseToken(tokenJSON);
                         // TODO: send token to your server
+                        Toast.makeText(PaymentActivity.this,
+                                "Sent Token!",
+                                Toast.LENGTH_LONG
+                        ).show();
                     } catch (JSONException jsonException) {
                         // Log the error and notify Stripe helpß
+                        // Show localized error message
+                        Toast.makeText(PaymentActivity.this,
+                                "Error Processing Card. Please Try Again",
+                                Toast.LENGTH_LONG
+                        ).show();
                     }
                 }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
-        }*/
+        }
     }
 
 
@@ -202,7 +206,7 @@ public class PaymentActivity extends AppCompatActivity
                 card,
                 new TokenCallback() {
                     public void onSuccess(Token token) {
-                        // Send token to your server
+                        //TODO Send token to your server
                         Toast.makeText(PaymentActivity.this,
                                 "Sent Token!",
                                 Toast.LENGTH_LONG
@@ -218,7 +222,7 @@ public class PaymentActivity extends AppCompatActivity
                 }
         );
     }
-    /*
+
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {}
 
@@ -227,9 +231,7 @@ public class PaymentActivity extends AppCompatActivity
 
     @Override
     public void onConnectionSuspended(int i) {}
-    */
 
-     /*
     public void showAndroidPay() {
         setContentView(R.layout.activity_payment);
 
@@ -242,7 +244,7 @@ public class PaymentActivity extends AppCompatActivity
                 .setPaymentMethodTokenizationParameters(PaymentMethodTokenizationParameters.newBuilder()
                         .setPaymentMethodTokenizationType(PaymentMethodTokenizationType.PAYMENT_GATEWAY)
                         .addParameter("gateway", "stripe")
-                        .addParameter("stripe:publishableKey", PUBLISHABLE_KEY)
+                        .addParameter("stripe:publishableKey", api_key)
                         .addParameter("stripe:version", com.stripe.android.BuildConfig.VERSION_NAME)
                         .build())
 
@@ -250,6 +252,7 @@ public class PaymentActivity extends AppCompatActivity
                 .setShippingAddressRequired(true)
 
                 // Price set as a decimal:
+                //TODO Change value of price
                 .setEstimatedTotalPrice("20.00")
                 .setCurrencyCode("USD")
                 .build();
@@ -263,6 +266,5 @@ public class PaymentActivity extends AppCompatActivity
         // Initialize the fragment:
         walletFragment.initialize(initParams);
 
-
-    }*/
+    }
 }

@@ -10,18 +10,7 @@
 <!--
 
     Android Pay Fragment
-
-    <fragment
-        android:id="@+id/wallet_fragment"
-        android:name="com.google.android.gms.wallet.fragment.SupportWalletFragment"
-        android:layout_width="335dp"
-        android:layout_height="39dp"
-        wallet:environment="test"
-        wallet:fragmentMode="buyButton"
-        tools:layout_editor_absoluteY="397dp"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout="@layout/fragment_payment" />
-    />-->
+-->
 
     <!--Car and Wash Details-->
     <android.support.constraint.ConstraintLayout
@@ -67,9 +56,29 @@
     </android.support.constraint.ConstraintLayout>
 
     <!--Book Button-->
+    <fragment
+        android:id="@+id/wallet_fragment"
+        android:name="com.google.android.gms.wallet.fragment.SupportWalletFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        wallet:environment="test"
+        wallet:fragmentMode="buyButton"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/BookButton"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp" />
+
     <Button
         android:id="@+id/BookButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="22dp"
@@ -115,7 +124,7 @@
 
             <Spinner
                 android:id="@+id/CountrySpinner"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 tools:layout_editor_absoluteX="8dp"
