@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -35,6 +34,11 @@ public class WashService {
             this.info[i] = infoArray.getString(i);
         }
     }
+
+//    public Service toService(){
+//
+//        return
+//    }
 
     @Override
     public String toString() {

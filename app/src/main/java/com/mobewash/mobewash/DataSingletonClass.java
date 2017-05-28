@@ -23,6 +23,7 @@ class DataSingletonClass {
     private String carModel = "";
     private String carColor = "";
     private String Licence = "";
+    private Service selectedService = null;
 
    //////////////////////setters///////////////////////
     public void setFirstName(String firstName) {
@@ -35,6 +36,10 @@ class DataSingletonClass {
 
     public void setPhone(String phone) {
         Phone = phone;
+    }
+
+    public void setSelectedService(Service selectedService) {
+        this.selectedService = selectedService;
     }
 
     public void setEmail(String email) {
@@ -88,5 +93,9 @@ class DataSingletonClass {
 
     public String getLicence() {
         return Licence;
+    }
+
+    public Service getSelectedService(){
+        return selectedService;
     }
 }
