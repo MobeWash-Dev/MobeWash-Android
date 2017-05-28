@@ -30,7 +30,7 @@ public class BookedFragment extends Fragment {
 
     private OnBookedFragmentInteractionListener mListener;
 
-    private Button mLogoutButton;
+    private Button mReturnHomeButton;
 
     public BookedFragment() {
         // Required empty public constructor
@@ -67,11 +67,11 @@ public class BookedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_booked, container, false);
-        mLogoutButton = (Button) view.findViewById(R.id.button_logout);
-        mLogoutButton.setOnClickListener(new View.OnClickListener() {
+        mReturnHomeButton = (Button) view.findViewById(R.id.button_return_home);
+        mReturnHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onLogoutPressed();
+                mListener.onReturnPressed();
             }
         });
         return view;
@@ -106,7 +106,6 @@ public class BookedFragment extends Fragment {
      */
     public interface OnBookedFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onBookedFragmentInteraction();
-        void onLogoutPressed();
+        void onReturnPressed();
     }
 }

@@ -246,8 +246,8 @@ public class LoginActivity extends AppCompatActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(mainIntent);
+                Intent landingIntent = new Intent(LoginActivity.this, LandingActivity.class);
+                startActivity(landingIntent);
                 finish();
             }
         });
