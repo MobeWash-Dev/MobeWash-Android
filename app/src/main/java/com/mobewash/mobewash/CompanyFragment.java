@@ -89,7 +89,8 @@ public class CompanyFragment extends Fragment {
                     final ArrayList<CompanyData> data = JSONParser.parseCompanyData(jsonArray);
                     ArrayList<String> names = new ArrayList<String>();
                     for( int i = 0; i < data.size(); i++){
-                        names.add(data.get(i).getName());
+                        String coke = data.get(i).getName() + ":  " + data.get(i).getaddress();
+                        names.add(coke);
                     }
                     String [] items = names.toArray(new String[names.size()]);
 
