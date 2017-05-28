@@ -1,7 +1,6 @@
 package com.mobewash.mobewash;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,6 +22,8 @@ import java.util.regex.Pattern;
  * create an instance of this fragment.
  */
 public class DetailsFragment extends Fragment {
+    private static final String TAG = "DetailsFragment";
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,9 +39,8 @@ public class DetailsFragment extends Fragment {
     private EditText PhoneText;
     private EditText EmailText;
     private EditText MakeText;
-    private EditText ModelText;
     private EditText ColorText;
-    private EditText LicenceText;
+    private EditText LicenseText;
 
     private Button mNextButton;
 
@@ -90,9 +90,8 @@ public class DetailsFragment extends Fragment {
         PhoneText = (EditText) view.findViewById(R.id.Phone);
         EmailText = (EditText) view.findViewById(R.id.Email);
         MakeText = (EditText) view.findViewById(R.id.Make);
-        ModelText = (EditText) view.findViewById(R.id.Model);
         ColorText = (EditText) view.findViewById(R.id.Color);
-        LicenceText = (EditText) view.findViewById(R.id.License);
+        LicenseText = (EditText) view.findViewById(R.id.License);
 
         mNextButton = (Button) view.findViewById(R.id.button_next);
         mNextButton.setOnClickListener(new View.OnClickListener() {
@@ -125,21 +124,16 @@ public class DetailsFragment extends Fragment {
                     hasError = true;
                 }
 
-                final String License = LicenceText.getText().toString();
+                final String License = LicenseText.getText().toString();
                 if (!isValidName(License)) {
-                    LicenceText.setError("Invalid License");
+                    LicenseText.setError("Invalid License");
                     hasError = true;
                 }
 
                 final String Make = MakeText.getText().toString();
-                final String Model = ModelText.getText().toString();
                 final String Color = ColorText.getText().toString();
                 if (!isValidName(Make)) {
                     MakeText.setError("Invalid");
-                    hasError = true;
-                }
-                if (!isValidName(Model)) {
-                    ModelText.setError("Invalid");
                     hasError = true;
                 }
                 if (!isValidName(Color)) {
@@ -154,9 +148,8 @@ public class DetailsFragment extends Fragment {
                     sharedData.setPhone(PhoneText.getText().toString());
                     sharedData.setEmail(EmailText.getText().toString());
                     sharedData.setCarMake(MakeText.getText().toString());
-                    sharedData.setCarModel(ModelText.getText().toString());
                     sharedData.setCarColor(ColorText.getText().toString());
-                    sharedData.setLicence(LicenceText.getText().toString());
+                    sharedData.setLicense(LicenseText.getText().toString());
                 }
                 //mListener.onDetailsFragmentInteraction();
             }
