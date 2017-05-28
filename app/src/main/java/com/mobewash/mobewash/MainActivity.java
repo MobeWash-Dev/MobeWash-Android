@@ -13,7 +13,8 @@ public class MainActivity extends AppCompatActivity
         BookAWashFragment.OnBookAWashFragmentInteractionListener,
         DetailsFragment.OnDetailsFragmentInteractionListener,
         PaymentFragment.OnPaymentFragmentInteractionListener,
-        BookedFragment.OnBookedFragmentInteractionListener {
+        BookedFragment.OnBookedFragmentInteractionListener,
+        SelectServiceFragment.OnSelectServiceFragmentInteractionListener{
 
     private static final String TAG = "MainActivity";
 
@@ -89,9 +90,18 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBookAWashButtonClick() {
+        SelectServiceFragment selectServiceFragment = new SelectServiceFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.framelayout_main_fragment_container, selectServiceFragment)
+                .addToBackStack("selectservice").commit();
+    }
+
+    @Override
+    public void onServiceSelect() {
         DetailsFragment detailsFragment = new DetailsFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.framelayout_main_fragment_container, detailsFragment)
                 .addToBackStack("details").commit();
+
     }
 }
