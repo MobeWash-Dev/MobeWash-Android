@@ -24,29 +24,28 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         getSupportFragmentManager().addOnBackStackChangedListener(this);
-        BookAWashFragment bookAWashFragment = new BookAWashFragment();
+
+        DetailsFragment detailsFragment = new DetailsFragment();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.framelayout_main_fragment_container, bookAWashFragment).commit();
+                .add(R.id.framelayout_main_fragment_container, detailsFragment).commit();
+        /*BookAWashFragment bookAWashFragment = new BookAWashFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.framelayout_main_fragment_container, bookAWashFragment).commit();*/
     }
 
     @Override
     public void onBackStackChanged() {
-        attemptDisplayHomeButton();
+        
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        getSupportFragmentManager().popBackStack();
-        attemptDisplayHomeButton();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            finish();
+        }
         return true;
-    }
-
-    /**
-     * Only displays up button if parent exists.
-     */
-    private void attemptDisplayHomeButton() {
-        boolean canBack = getSupportFragmentManager().getBackStackEntryCount() > 0;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(canBack);
     }
 
     /**
@@ -79,13 +78,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBookedFragmentInteraction() {
-
-    }
-
-    @Override
-    public void onLogoutPressed() {
-        logout();
+    public void onReturnPressed() {
+        Intent landingIntent = new Intent(MainActivity.this, LandingActivity.class);
+        startActivity(landingIntent);
+        finish();
     }
 
     @Override
