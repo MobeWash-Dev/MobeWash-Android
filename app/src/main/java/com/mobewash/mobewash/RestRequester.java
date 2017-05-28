@@ -57,20 +57,18 @@ public class RestRequester {
         mRequestQueue.addToRequestQueue(jsonArrayRequest);
     }
 
-    public void putPayment(String url, final OnArrayRequestCompleteListener listener) {
-        JsonArrayRequest putRequest = new JsonArrayRequest(Request.Method.PUT, url,
-                new Response.Listener<String>()
-                {
+    public void putPayment(String url, final OnRequestCompleteListener listener) {
+        JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.PUT, url, null, new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
-                        listener.onArrayRequestComplete(null, response);
+                    public void onResponse(JSONObject response) {
+                        listener.onRequestComplete(null, response);
                     }
                 },
                 new Response.ErrorListener()
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        listener.onArrayRequestComplete(error, null);
+                        listener.onRequestComplete(error, null);
                     }
                 }
         ) {
@@ -100,7 +98,4 @@ public class RestRequester {
         void onArrayRequestComplete(Exception err, JSONArray jsonArray);
     }
 
-    interface OnPutRequestCompleteListener{
-        void OnRequestComplete(Exception err, String string);
-    }
 }
