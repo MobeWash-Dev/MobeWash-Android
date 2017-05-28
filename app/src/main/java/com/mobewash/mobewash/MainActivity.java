@@ -26,11 +26,9 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager().addOnBackStackChangedListener(this);
 
         DetailsFragment detailsFragment = new DetailsFragment();
+
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.framelayout_main_fragment_container, detailsFragment).commit();
-        /*BookAWashFragment bookAWashFragment = new BookAWashFragment();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.framelayout_main_fragment_container, bookAWashFragment).commit();*/
     }
 
     @Override
