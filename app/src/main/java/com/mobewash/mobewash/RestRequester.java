@@ -1,15 +1,20 @@
 package com.mobewash.mobewash;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by sidney on 5/14/17.
@@ -52,11 +57,50 @@ public class RestRequester {
         mRequestQueue.addToRequestQueue(jsonArrayRequest);
     }
 
+    public void putPayment(String url, final OnArrayRequestCompleteListener listener) {
+        JsonArrayRequest putRequest = new JsonArrayRequest(Request.Method.PUT, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        listener.onArrayRequestComplete(null, response);
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        listener.onArrayRequestComplete(error, null);
+                    }
+                }
+        ) {
+
+            @Override
+            protected Map<String, String> getParams()
+            {
+                DataSingletonClass sharedData = DataSingletonClass.getInstance();
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("card", sharedData.getToken());
+                params.put("currecy","usd");
+                params.put("description", sharedData.getSelectedService().getTitle());
+                params.put("amount", sharedData.getCharge());
+
+                return params;
+            }
+
+        };
+    }
+
     interface OnRequestCompleteListener {
         void onRequestComplete(Exception err, JSONObject jsonObject);
     }
 
     interface OnArrayRequestCompleteListener {
         void onArrayRequestComplete(Exception err, JSONArray jsonArray);
+    }
+
+    interface OnPutRequestCompleteListener{
+        void OnRequestComplete(Exception err, String string);
     }
 }

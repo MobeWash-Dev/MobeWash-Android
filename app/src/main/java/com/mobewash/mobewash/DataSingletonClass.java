@@ -24,6 +24,8 @@ class DataSingletonClass {
     private String carColor = "";
     private String license = "";
     private Service selectedService = null;
+    private String token = "";
+    private String charge = "";
 
     //For Company Frag
     private String companyName = "";
@@ -69,6 +71,11 @@ class DataSingletonClass {
         this.companyName = companyName;
     }
 
+    public void setToken(String token){ this.token = token; }
+
+    public void setCharge(String charge){ this.charge = charge; }
+
+
     ///////getters///////
     public String getFirstName() {
         return firstName;
@@ -109,4 +116,8 @@ class DataSingletonClass {
     public String getCompanyName() {
         return companyName;
     }
+
+    public String getToken(){ return token;};
+
+    public String getCharge() { return charge;}
 }
