@@ -24,6 +24,9 @@ class DataSingletonClass {
     private String carColor = "";
     private String Licence = "";
 
+    //For Company Frag
+    private String CompanyName = "";
+
    //////////////////////setters///////////////////////
     public void setFirstName(String firstName) {
         FirstName = firstName;
@@ -57,7 +60,11 @@ class DataSingletonClass {
         Licence = licence;
     }
 
-            ///////getters///////
+    public void setCompanyName(String companyName) {
+        CompanyName = companyName;
+    }
+
+    ///////getters///////
     public String getFirstName() {
         return FirstName;
     }
@@ -88,5 +95,9 @@ class DataSingletonClass {
 
     public String getLicence() {
         return Licence;
+    }
+
+    public String getCompanyName() {
+        return CompanyName;
     }
 }

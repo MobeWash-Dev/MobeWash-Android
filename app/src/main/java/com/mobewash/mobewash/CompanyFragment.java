@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -28,8 +29,7 @@ import java.util.ArrayList;
 public class CompanyFragment extends Fragment {
 
     private ListView listView;
-
-
+    DataSingletonClass sharedData = DataSingletonClass.getInstance();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,7 +86,7 @@ public class CompanyFragment extends Fragment {
             @Override
             public void onArrayRequestComplete(Exception err, JSONArray jsonArray) {
                 if(err == null) {
-                    ArrayList<CompanyData> data = JSONParser.parseCompanyData(jsonArray);
+                    final ArrayList<CompanyData> data = JSONParser.parseCompanyData(jsonArray);
                     ArrayList<String> names = new ArrayList<String>();
                     for( int i = 0; i < data.size(); i++){
                         names.add(data.get(i).getName());
@@ -96,6 +96,12 @@ public class CompanyFragment extends Fragment {
                     ArrayAdapter<String> itemsAdapter =
                             new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,items);
                     listView.setAdapter(itemsAdapter);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
+                            // Your code for item clicks
+                            sharedData.setCompanyName(data.get(pos).getName());
+                        }
+                    });
                 }
             }
 
