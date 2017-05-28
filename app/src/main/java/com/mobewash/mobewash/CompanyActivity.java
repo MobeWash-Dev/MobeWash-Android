@@ -4,7 +4,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CompanyActivity extends AppCompatActivity implements CompanyFragment.OnFragmentInteractionListener {
+public class CompanyActivity extends AppCompatActivity implements CompanyFragment.OnCompanyFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,7 +13,7 @@ public class CompanyActivity extends AppCompatActivity implements CompanyFragmen
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onCompanySelected() {
 
     }
 }

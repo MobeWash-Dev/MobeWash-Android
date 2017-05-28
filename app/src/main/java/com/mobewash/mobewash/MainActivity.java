@@ -1,20 +1,22 @@
 package com.mobewash.mobewash;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.facebook.login.LoginManager;
 import com.stripe.android.model.Card;
 
 public class MainActivity extends AppCompatActivity
         implements FragmentManager.OnBackStackChangedListener,
-        BookAWashFragment.OnBookAWashFragmentInteractionListener,
         DetailsFragment.OnDetailsFragmentInteractionListener,
         PaymentFragment.OnPaymentFragmentInteractionListener,
         BookedFragment.OnBookedFragmentInteractionListener,
-        SelectServiceFragment.OnSelectServiceFragmentInteractionListener{
+        SelectServiceFragment.OnSelectServiceFragmentInteractionListener,
+        CompanyFragment.OnCompanyFragmentInteractionListener {
 
     private static final String TAG = "MainActivity";
 
@@ -25,10 +27,9 @@ public class MainActivity extends AppCompatActivity
 
         getSupportFragmentManager().addOnBackStackChangedListener(this);
 
-        DetailsFragment detailsFragment = new DetailsFragment();
-
+        CompanyFragment companyFragment = new CompanyFragment();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.framelayout_main_fragment_container, detailsFragment).commit();
+                .add(R.id.framelayout_main_fragment_container, companyFragment).commit();
     }
 
     @Override
@@ -83,19 +84,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBookAWashButtonClick() {
-        SelectServiceFragment selectServiceFragment = new SelectServiceFragment();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.framelayout_main_fragment_container, selectServiceFragment)
-                .addToBackStack("selectservice").commit();
-    }
-
-    @Override
     public void onServiceSelect() {
         DetailsFragment detailsFragment = new DetailsFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.framelayout_main_fragment_container, detailsFragment)
                 .addToBackStack("details").commit();
 
+    }
+
+    @Override
+    public void onCompanySelected() {
+        SelectServiceFragment selectServiceFragment = new SelectServiceFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.framelayout_main_fragment_container, selectServiceFragment)
+                .addToBackStack("selectservice").commit();
     }
 }
