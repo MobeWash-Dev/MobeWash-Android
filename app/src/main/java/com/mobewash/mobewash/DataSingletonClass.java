@@ -25,6 +25,9 @@ class DataSingletonClass {
     private String Licence = "";
     private Service selectedService = null;
 
+    //For Company Frag
+    private String CompanyName = "";
+
    //////////////////////setters///////////////////////
     public void setFirstName(String firstName) {
         FirstName = firstName;
@@ -62,7 +65,11 @@ class DataSingletonClass {
         Licence = licence;
     }
 
-            ///////getters///////
+    public void setCompanyName(String companyName) {
+        CompanyName = companyName;
+    }
+
+    ///////getters///////
     public String getFirstName() {
         return FirstName;
     }
@@ -95,7 +102,11 @@ class DataSingletonClass {
         return Licence;
     }
 
-    public Service getSelectedService(){
+    public Service getSelectedService() {
         return selectedService;
+    }
+
+    public String getCompanyName() {
+        return CompanyName;
     }
 }
