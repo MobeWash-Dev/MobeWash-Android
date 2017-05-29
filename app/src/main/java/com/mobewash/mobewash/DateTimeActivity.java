@@ -5,19 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-
-import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
-
-import java.util.Calendar;
-
-public class DateTimeActivity extends AppCompatActivity implements DateTimeFragment.OnFragmentInteractionListener{
+public class DateTimeActivity extends AppCompatActivity implements DateTimeFragment.OnDateTimeFragmentInteractionListener {
 
 
     private EditText dateEditText;
@@ -31,7 +21,7 @@ public class DateTimeActivity extends AppCompatActivity implements DateTimeFragm
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onDateTimeFragmentInteraction(Uri uri) {
 
     }
 }

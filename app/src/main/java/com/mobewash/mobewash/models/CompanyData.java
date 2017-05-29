@@ -49,7 +49,7 @@ public class CompanyData {
                 + "setting: " + getSetting() + "\n}";
     }
 
-    private class Setting {
+    public class Setting {
         private int[] washDays;
         private int slotCap;
 
@@ -63,7 +63,7 @@ public class CompanyData {
 
         }
 
-        public int[] getwashDays() {
+        public int[] getWashDays() {
             return washDays;
         }
 
@@ -74,9 +74,9 @@ public class CompanyData {
 
         @Override
         public String toString() {
-            String washDaysString = "[" + getwashDays()[0];
-            for (int i = 1; i < getwashDays().length; i++) {
-                washDaysString += ", " + getwashDays()[i];
+            String washDaysString = "[" + getWashDays()[0];
+            for (int i = 1; i < getWashDays().length; i++) {
+                washDaysString += ", " + getWashDays()[i];
             }
             washDaysString += "]";
 
