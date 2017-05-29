@@ -1,7 +1,9 @@
 package com.mobewash.mobewash;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateTimeActivity2 extends AppCompatActivity {
+public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFragment.OnDateTimeFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,8 @@ public class DateTimeActivity2 extends AppCompatActivity {
                 caldroidFragment.setCalendarDate(date);
                 caldroidFragment.setSelectedDate(date);
                 caldroidFragment.refreshView();
+                Intent detailsIntent = new Intent(DateTimeActivity2.this, DetailsActivity.class);
+                startActivity(detailsIntent);
             }
 
             @Override
@@ -159,5 +163,8 @@ public class DateTimeActivity2 extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onDateTimeFragmentInteraction(Uri uri) {
 
+    }
 }

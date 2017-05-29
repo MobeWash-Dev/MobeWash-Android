@@ -13,7 +13,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 
@@ -21,7 +20,7 @@ import java.util.Calendar;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DateTimeFragment.OnFragmentInteractionListener} interface
+ * {@link OnDateTimeFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link DateTimeFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -38,7 +37,7 @@ public class DateTimeFragment extends Fragment implements DatePickerDialog.OnDat
     private EditText dateEditText;
     private EditText timeEditText;
 
-    private OnFragmentInteractionListener mListener;
+    private OnDateTimeFragmentInteractionListener mListener;
     private Calendar firstDate;
     private DatePickerDialog dpd;
     private View datePickerView;
@@ -118,18 +117,18 @@ public class DateTimeFragment extends Fragment implements DatePickerDialog.OnDat
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onDateTimeFragmentInteraction(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnDateTimeFragmentInteractionListener) {
+            mListener = (OnDateTimeFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnDateTimeFragmentInteractionListener");
         }
     }
 
@@ -198,8 +197,8 @@ public class DateTimeFragment extends Fragment implements DatePickerDialog.OnDat
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnDateTimeFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onDateTimeFragmentInteraction(Uri uri);
     }
 }

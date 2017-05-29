@@ -38,7 +38,7 @@
         <!-- Our Activities -->
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,32 +47,51 @@
         </activity>
         <activity
             android:name=".PaymentActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".DetailsActivity" />
-        <activity android:name=".SelectCompany" />
-        <activity android:name=".JsonTestActivity">
-        </activity>
-
-        <activity android:name=".CompanyActivity">
-        </activity>
-
-        <activity android:name=".MainActivity" >
+            android:windowSoftInputMode="adjustPan">
             <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".LandingActivity" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DetailsActivity" />
+        </activity>
+        <activity android:name=".DetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DateTimeActivity2" />
+        </activity>
+        <activity android:name=".SelectCompany">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LandingActivity" />
+        </activity>
+        <activity android:name=".JsonTestActivity" />
+        <activity android:name=".CompanyActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LandingActivity" />
+        </activity>
+        <activity android:name=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LandingActivity" />
         </activity>
         <activity
             android:name=".LandingActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".DateTimeActivity">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DateTimeActivity" />
         <activity
             android:name=".DateTimeActivity2"
             android:label="@string/title_activity_date_time2"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LandingActivity" />
         </activity>
+        <activity android:name=".SelectServiceActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LandingActivity" />
+        </activity>
+        <activity android:name=".BookedActivity" />
     </application>
 
 </manifest>

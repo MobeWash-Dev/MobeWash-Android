@@ -42,8 +42,8 @@ public class LandingActivity extends AppCompatActivity
         mBookNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mainIntent = new Intent(LandingActivity.this, MainActivity.class);
-                startActivity(mainIntent);
+                Intent companyIntent = new Intent(LandingActivity.this, CompanyActivity.class);
+                startActivity(companyIntent);
             }
         });
     }
