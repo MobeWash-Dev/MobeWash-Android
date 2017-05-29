@@ -38,7 +38,7 @@
         <!-- Our Activities -->
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,10 +49,10 @@
             android:name=".PaymentActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".DetailsActivity" />
-        <activity android:name=".SelectCompany">
-
+        <activity android:name=".SelectCompany" />
+        <activity android:name=".JsonTestActivity">
         </activity>
-        <activity android:name=".JsonTestActivity" />
+
         <activity android:name=".CompanyActivity">
         </activity>
 
@@ -65,7 +65,13 @@
             android:name=".LandingActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-
+        </activity>
+        <activity android:name=".DateTimeActivity">
+        </activity>
+        <activity
+            android:name=".DateTimeActivity2"
+            android:label="@string/title_activity_date_time2"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
