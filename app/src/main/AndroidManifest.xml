@@ -38,18 +38,19 @@
         <!-- Our Activities -->
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".PaymentActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".DetailsActivity" />
         <activity android:name=".SelectCompany" />
         <activity android:name=".JsonTestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".CompanyActivity">
@@ -66,21 +67,11 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".DateTimeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".DateTimeActivity2"
             android:label="@string/title_activity_date_time2"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
