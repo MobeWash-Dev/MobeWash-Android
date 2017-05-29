@@ -26,7 +26,7 @@ public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFrag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_date_time2);
+        setContentView(R.layout.content_date_time2);
 
 
         final CaldroidFragment caldroidFragment = new CaldroidFragment();
