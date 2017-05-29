@@ -5,11 +5,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -39,7 +36,9 @@ public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFrag
         args.putInt(CaldroidFragment.YEAR, cal.get(Calendar.YEAR));
         caldroidFragment.setArguments(args);
 
-        int[] enabledDays = {2,3};
+        DataSingletonClass singleton = DataSingletonClass.getInstance();
+        int[] enabledDays = singleton.getCompanyData().getSetting().getWashDays();
+        //int[] enabledDays = {2,3};
         ArrayList<String> disabledDates = addDisabledDates(enabledDays);
         caldroidFragment.setDisableDatesFromString(disabledDates);
         caldroidFragment.setMinDate(Calendar.getInstance().getTime());

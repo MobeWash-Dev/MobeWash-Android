@@ -1,5 +1,7 @@
 package com.mobewash.mobewash;
 
+import com.mobewash.mobewash.models.CompanyData;
+
 /**
  * Created by Danny on 5/13/2017.
  */
@@ -24,6 +26,8 @@ class DataSingletonClass {
     private String carColor = "";
     private String license = "";
     private Service selectedService = null;
+
+    private CompanyData companyData;
 
     //For Company Frag
     private String companyName = "";
@@ -69,6 +73,10 @@ class DataSingletonClass {
         this.companyName = companyName;
     }
 
+    public void setCompanyData(CompanyData companyData) {
+        this.companyData = companyData;
+    }
+
     ///////getters///////
     public String getFirstName() {
         return firstName;
@@ -108,5 +116,9 @@ class DataSingletonClass {
 
     public String getCompanyName() {
         return companyName;
+    }
+
+    public CompanyData getCompanyData() {
+        return this.companyData;
     }
 }

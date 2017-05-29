@@ -18,14 +18,6 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnCompanyFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CompanyFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CompanyFragment extends Fragment {
 
     private ListView listView;
@@ -70,6 +62,7 @@ public class CompanyFragment extends Fragment {
                         public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
                             // Your code for item clicks
                             sharedData.setCompanyName(data.get(pos).getName());
+                            sharedData.setCompanyData(data.get(pos));
                             mListener.onCompanySelected();
                         }
                     });
