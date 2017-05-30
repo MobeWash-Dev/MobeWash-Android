@@ -37,12 +37,11 @@ public class SelectServiceFragment extends android.support.v4.app.Fragment{
         restRequester = new RestRequester(getActivity());
         mCallbackManager = CallbackManager.Factory.create();
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_select_service, container, false);
-        mListView = (ListView) view.findViewById(R.id.service_list_view);
+
         restRequester.getArray("https://mobe-server.herokuapp.com/api/service", new RestRequester.OnArrayRequestCompleteListener() {
             @Override
             public void onArrayRequestComplete(Exception err, JSONArray jsonArray) {
@@ -52,20 +51,11 @@ public class SelectServiceFragment extends android.support.v4.app.Fragment{
                     Log.d(TAG, jsonArray.toString());
                     ArrayList<WashService> washServiceList = JSONParser.parseWashService(jsonArray);
                     Log.d(TAG, washServiceList.toString());
-                    ServiceListAdapter serviceListAdapter = new ServiceListAdapter(getActivity(), washServiceList);
-                    mListView.setAdapter(serviceListAdapter);
-                    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            WashService result = (WashService) parent.getItemAtPosition(position);
-                            DataSingletonClass.getInstance().setService(result);
-                            mListener.onServiceSelect();
-                        }
-                    });
                 }
             }
         });
-        /*Service mobewash = new Service("Mobe", "The full exterior car wash service 55min", "24");
+        mListView = (ListView) view.findViewById(R.id.service_list_view);
+        Service mobewash = new Service("Mobe", "The full exterior car wash service 55min", "24");
         Service mobewashPlus = new Service("MobePlus", "The full exterior and interior car wash service", "35");
         ArrayList<Service> services = new ArrayList<Service>();
         services.add(mobewash);
@@ -80,7 +70,6 @@ public class SelectServiceFragment extends android.support.v4.app.Fragment{
                 mListener.onServiceSelect();
             }
         });
-        */
 
         return view;
 
