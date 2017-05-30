@@ -14,10 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 
-public class customTimeAdapter extends ArrayAdapter<String>{
+public class CustomTimeAdapter extends ArrayAdapter<String>{
 
 
-    public customTimeAdapter(@NonNull Context context, String[] times) {
+    public CustomTimeAdapter(@NonNull Context context, String[] times) {
         super(context, R.layout.custom_time_layout,times);
     }
     @Override

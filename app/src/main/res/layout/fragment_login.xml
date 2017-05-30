@@ -46,7 +46,10 @@
         android:layout_centerHorizontal="true"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/linearLayout"
@@ -58,14 +61,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/signup" />
+            android:text="@string/signup"
+            android:background="@drawable/layout_rounded_corners"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginEnd="4dp"/>
 
         <Button
             android:id="@+id/button_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/login" />
+            android:text="@string/login"
+            android:background="@drawable/layout_rounded_corners"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginStart="4dp"/>
     </LinearLayout>
 
 </RelativeLayout>

@@ -118,7 +118,6 @@ public class LoginActivity extends AppCompatActivity
 
     @Override
     public void onEmailLogin(String email, String password) {
-
         // Attempt serverside email login
 
         //

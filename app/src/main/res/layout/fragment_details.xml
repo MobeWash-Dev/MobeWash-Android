@@ -136,6 +136,10 @@
             android:layout_marginTop="8dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/ExtraInfo"
+            android:background="@drawable/layout_rounded_corners"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
             android:text="Next" />
     </RelativeLayout>
 

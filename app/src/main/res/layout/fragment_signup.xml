@@ -33,10 +33,15 @@
 
     <Button
         android:id="@+id/button_signup"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/edittext_signup_password"
-        android:layout_marginTop="16dp"
-        android:text="@string/signup" />
+        android:layout_margin="16dp"
+        android:text="@string/signup"
+        android:background="@drawable/layout_rounded_corners"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        style="?android:attr/borderlessButtonStyle"/>
+
 </RelativeLayout>

@@ -56,8 +56,8 @@ public class ServiceListAdapter extends BaseAdapter{
                 (TextView) rowView.findViewById(R.id.service_list_detail);
 
 // Get thumbnail element
-        ImageView thumbnailImageView =
-                (ImageView) rowView.findViewById(R.id.service_list_thumbnail);
+        /*ImageView thumbnailImageView =
+                (ImageView) rowView.findViewById(R.id.service_list_thumbnail);*/
         Service recipe = (Service) getItem(position);
 
 // 2
