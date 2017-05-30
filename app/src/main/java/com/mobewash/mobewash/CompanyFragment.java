@@ -55,7 +55,7 @@ public class CompanyFragment extends Fragment {
                     /*
                     ArrayList<String> names = new ArrayList<String>();
                     for( int i = 0; i < data.size(); i++){
-                        String coke = data.get(i).getName() + ":  " + data.get(i).getaddress();
+                        String coke = data.get(i).getServiceName() + ":  " + data.get(i).getaddress();
                         names.add(coke);
                     }
 
