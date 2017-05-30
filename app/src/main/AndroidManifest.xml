@@ -39,11 +39,7 @@
         <activity
             android:name=".LoginActivity"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".PaymentActivity"
@@ -57,16 +53,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DateTimeActivity2" />
         </activity>
-        <activity android:name=".SelectCompany">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LandingActivity" />
-        </activity>
-        <activity android:name=".JsonTestActivity" />
         <activity android:name=".CompanyActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LandingActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
             <meta-data

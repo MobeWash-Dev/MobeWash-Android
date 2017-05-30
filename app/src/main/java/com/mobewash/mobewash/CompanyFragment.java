@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 
 
 public class CompanyFragment extends Fragment {
+
+    private static final String TAG = "CompanyFragment";
 
     private ListView listView;
     DataSingletonClass sharedData = DataSingletonClass.getInstance();
@@ -47,22 +50,27 @@ public class CompanyFragment extends Fragment {
             @Override
             public void onArrayRequestComplete(Exception err, JSONArray jsonArray) {
                 if(err == null) {
-                    final ArrayList<CompanyData> data = JSONParser.parseCompanyData(jsonArray);
+                    final ArrayList<CompanyData> companies = JSONParser.parseCompanyData(jsonArray);
+                    Log.d(TAG, "Companies: " + companies);
+                    /*
                     ArrayList<String> names = new ArrayList<String>();
                     for( int i = 0; i < data.size(); i++){
                         String coke = data.get(i).getName() + ":  " + data.get(i).getaddress();
                         names.add(coke);
                     }
+
                     String [] items = names.toArray(new String[names.size()]);
 
                     ArrayAdapter<String> itemsAdapter =
                             new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,items);
+                    */
+                    CompanyArrayAdapter itemsAdapter = new CompanyArrayAdapter(getContext(), companies);
                     listView.setAdapter(itemsAdapter);
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
                             // Your code for item clicks
-                            sharedData.setCompanyName(data.get(pos).getName());
-                            sharedData.setCompanyData(data.get(pos));
+                            sharedData.setCompanyName(companies.get(pos).getName());
+                            sharedData.setCompanyData(companies.get(pos));
                             mListener.onCompanySelected();
                         }
                     });
