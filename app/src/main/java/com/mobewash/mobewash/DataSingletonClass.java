@@ -1,6 +1,7 @@
 package com.mobewash.mobewash;
 
 import com.mobewash.mobewash.models.CompanyData;
+import com.mobewash.mobewash.models.WashService;
 
 /**
  * Created by Danny on 5/13/2017.
@@ -26,6 +27,7 @@ class DataSingletonClass {
     private String carColor = "";
     private String license = "";
     private Service selectedService = null;
+    private WashService service;
 
     private CompanyData companyData;
 
@@ -120,5 +122,9 @@ class DataSingletonClass {
 
     public CompanyData getCompanyData() {
         return this.companyData;
+    }
+
+    public void setService(WashService service) {
+        this.service = service;
     }
 }
