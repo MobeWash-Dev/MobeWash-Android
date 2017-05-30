@@ -63,8 +63,8 @@ public class PaymentActivity extends AppCompatActivity
     //change to WalletConstants.ENVIRONMENT_PRODUCTION when you're ready to go live
     public static final int mEnvironment = WalletConstants.ENVIRONMENT_TEST;
 
-    //Keep track of Access Control
-
+    //Data singleton
+    public DataSingletonClass sharedData = DataSingletonClass.getInstance();
 
     // Create Wallet Fragment and Google API client for Android Pay
     private SupportWalletFragment walletFragment;
@@ -202,7 +202,10 @@ public class PaymentActivity extends AppCompatActivity
                 card,
                 new TokenCallback() {
                     public void onSuccess(Token token) {
-                        // Send token to your server
+                        // Add token to singleton
+                        sharedData.setToken(token);
+                        Log.d(TAG, token.getId());
+
                         Toast.makeText(PaymentActivity.this,
                                 "Sent Token!",
                                 Toast.LENGTH_LONG

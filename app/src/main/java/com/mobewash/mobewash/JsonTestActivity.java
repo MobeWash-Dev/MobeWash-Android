@@ -57,5 +57,16 @@ public class JsonTestActivity extends AppCompatActivity {
                 }
             }
         });
+
+        restRequester.postPayment("http://10.0.2.2:3000/api/payment", new RestRequester.OnRequestCompleteListener() {
+            public void onRequestComplete(Exception err, JSONObject jsonObject) {
+                if(err != null) {
+                    Log.e(TAG, "POST PAYMENT ERROR", err);
+                } else {
+                    Log.d(TAG, jsonObject.toString());
+                }
+
+            }
+        });
     }
 }

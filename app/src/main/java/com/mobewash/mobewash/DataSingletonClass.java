@@ -1,5 +1,7 @@
 package com.mobewash.mobewash;
 
+import com.stripe.android.model.Token;
+
 /**
  * Created by Danny on 5/13/2017.
  */
@@ -24,7 +26,7 @@ class DataSingletonClass {
     private String carColor = "";
     private String license = "";
     private Service selectedService = null;
-    private String token = "";
+    private Token token;
     private String charge = "";
 
     //For Company Frag
@@ -71,7 +73,7 @@ class DataSingletonClass {
         this.companyName = companyName;
     }
 
-    public void setToken(String token){ this.token = token; }
+    public void setToken(Token token){ this.token = token; }
 
     public void setCharge(String charge){ this.charge = charge; }
 
@@ -117,7 +119,7 @@ class DataSingletonClass {
         return companyName;
     }
 
-    public String getToken(){ return token;};
+    public Token getToken(){ return token;};
 
     public String getCharge() { return charge;}
 }

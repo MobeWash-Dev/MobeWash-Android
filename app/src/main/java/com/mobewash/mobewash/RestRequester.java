@@ -27,6 +27,8 @@ public class RestRequester {
         mRequestQueue = new RequestQueueSingleton(context);
     }
 
+    public DataSingletonClass sharedData = DataSingletonClass.getInstance();
+
     public void get(String url, final OnRequestCompleteListener listener) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -57,8 +59,8 @@ public class RestRequester {
         mRequestQueue.addToRequestQueue(jsonArrayRequest);
     }
 
-    public void putPayment(String url, final OnRequestCompleteListener listener) {
-        JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.PUT, url, null, new Response.Listener<JSONObject>() {
+    public void postPayment(String url, final OnRequestCompleteListener listener) {
+        JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         listener.onRequestComplete(null, response);
@@ -72,22 +74,19 @@ public class RestRequester {
                     }
                 }
         ) {
-
             @Override
             protected Map<String, String> getParams()
             {
-                DataSingletonClass sharedData = DataSingletonClass.getInstance();
-
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("card", sharedData.getToken());
-                params.put("currecy","usd");
+                params.put("card", sharedData.getToken().getId());
+                params.put("currency","usd");
                 params.put("description", sharedData.getSelectedService().getTitle());
                 params.put("amount", sharedData.getCharge());
-
                 return params;
             }
 
         };
+        mRequestQueue.addToRequestQueue(putRequest);
     }
 
     interface OnRequestCompleteListener {
