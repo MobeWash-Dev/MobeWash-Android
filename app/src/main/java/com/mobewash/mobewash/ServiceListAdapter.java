@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mobewash.mobewash.models.WashService;
-
 import java.util.ArrayList;
 
 /**
@@ -19,9 +17,9 @@ import java.util.ArrayList;
 public class ServiceListAdapter extends BaseAdapter{
     private Context mContext;
     private LayoutInflater mInflater;
-    private ArrayList<WashService> mDataSource;
+    private ArrayList<Service> mDataSource;
 
-    public ServiceListAdapter(Context context, ArrayList<WashService> items) {
+    public ServiceListAdapter(Context context, ArrayList<Service> items) {
         mContext = context;
         mDataSource = items;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -60,12 +58,12 @@ public class ServiceListAdapter extends BaseAdapter{
 // Get thumbnail element
         /*ImageView thumbnailImageView =
                 (ImageView) rowView.findViewById(R.id.service_list_thumbnail);*/
-        WashService recipe = (WashService) getItem(position);
+        Service recipe = (Service) getItem(position);
 
 // 2
-        titleTextView.setText(recipe.getServiceName());
+        titleTextView.setText(recipe.getTitle());
         subtitleTextView.setText(recipe.getDescription());
-        detailTextView.setText("" + recipe.getPaymentAmount());
+        detailTextView.setText(recipe.getDetail());
         return rowView;
     }
 
