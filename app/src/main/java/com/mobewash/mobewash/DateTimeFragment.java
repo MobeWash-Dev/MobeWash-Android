@@ -115,7 +115,7 @@ public class DateTimeFragment extends Fragment implements DatePickerDialog.OnDat
 
     private void populateTimes() {
         String[] myTimes = { "10:00am", "12:00pm", "6:00pm" };
-        ListAdapter timeAdapter= new customTimeAdapter(getContext(),myTimes);
+        ListAdapter timeAdapter= new CustomTimeAdapter(getContext(),myTimes);
         ListView timeListView = (ListView) getView().findViewById(R.id.timeListView);
         timeListView.setAdapter(timeAdapter);
     }

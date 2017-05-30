@@ -69,7 +69,7 @@
     <!--Book Button-->
     <Button
         android:id="@+id/BookButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="22dp"
@@ -81,7 +81,11 @@
         tools:ignore="HardcodedText"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
+        tools:layout_constraintRight_creator="1"
+        android:background="@drawable/layout_rounded_corners"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <!--Card Details-->
 

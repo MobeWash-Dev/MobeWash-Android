@@ -97,7 +97,6 @@ public class DetailsFragment extends Fragment {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 boolean hasError = false;
 
                 final String email = EmailText.getText().toString();

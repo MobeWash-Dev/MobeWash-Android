@@ -21,6 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="RETURN TO HOME"
+        android:background="@drawable/layout_rounded_corners"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

@@ -57,12 +57,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DateTimeActivity2" />
         </activity>
-        <activity android:name=".SelectCompany">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LandingActivity" />
-        </activity>
-        <activity android:name=".JsonTestActivity" />
         <activity android:name=".CompanyActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
