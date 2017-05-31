@@ -19,7 +19,7 @@ public class RestRequester {
     private RequestQueueSingleton mRequestQueue;
 
     public RestRequester(Context context) {
-        mRequestQueue = new RequestQueueSingleton(context);
+        mRequestQueue = RequestQueueSingleton.getInstance(context);
     }
 
     public void get(String url, final OnRequestCompleteListener listener) {
