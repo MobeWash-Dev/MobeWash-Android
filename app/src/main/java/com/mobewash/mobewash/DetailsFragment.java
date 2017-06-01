@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -94,6 +95,16 @@ public class DetailsFragment extends Fragment {
         LicenseText = (EditText) view.findViewById(R.id.License);
 
         mNextButton = (Button) view.findViewById(R.id.button_next);
+
+
+        FirstNameText.setText(sharedData.getFirstName());
+        LastNameText.setText(sharedData.getLastName());
+        PhoneText.setText(sharedData.getPhone());
+        EmailText.setText(sharedData.getEmail());
+        MakeText.setText(sharedData.getCarMake());
+        ColorText.setText(sharedData.getCarColor());
+        LicenseText.setText(sharedData.getLicense());
+
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,6 +167,7 @@ public class DetailsFragment extends Fragment {
 
         return view;
     }
+
 
     // validating Names
     private boolean isValidName(String name) {
