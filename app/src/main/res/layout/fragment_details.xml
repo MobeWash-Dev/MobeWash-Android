@@ -41,22 +41,32 @@
             android:layout_below="@+id/TextView"
             android:layout_marginTop="16dp"
             android:orientation="horizontal">
-            <EditText
-                android:id="@+id/FirstName"
-                android:layout_width="wrap_content"
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="textPersonName"
-                android:ems="8"
-                android:hint="First Name" />
-            <EditText
-                android:id="@+id/LastName"
                 android:layout_width="wrap_content"
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/FirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="8"
+                    android:hint="First Name" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="textPersonName"
-                android:ems="8"
-                android:hint="Last Name" />
+                android:layout_width="wrap_content"
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/LastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="8"
+                    android:hint="Last Name" />
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -67,67 +77,100 @@
             android:layout_marginTop="8dp"
             android:id="@+id/linearlayout_car"
             android:orientation="horizontal">
-            <EditText
-                android:id="@+id/Make"
-                android:layout_width="wrap_content"
+            <android.support.design.widget.TextInputLayout
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="8"
-                android:inputType="textPersonName"
-                android:hint="Car Make" />
+                android:layout_width="wrap_content"
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/Make"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="8"
+                    android:inputType="textPersonName"
+                    android:hint="Make/Model" />
+        </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/Color"
-                android:layout_width="wrap_content"
+            <android.support.design.widget.TextInputLayout
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="8"
-                android:inputType="textPersonName"
-                android:hint="Color" />
+                android:layout_width="wrap_content"
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/Color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="8"
+                    android:inputType="textPersonName"
+                    android:hint="Color" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/License"
-                android:layout_width="wrap_content"
+            <android.support.design.widget.TextInputLayout
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:layout_weight="1"
-                android:ems="8"
-                android:inputType="textPersonName"
-                android:hint="Last 4 Digits of License" />
+                android:id="@+id/TextInputLicense">
+                <EditText
+                    android:id="@+id/License"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="8"
+                    android:inputType="textPersonName"
+                    android:hint="License Plate" />
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
-
-        <EditText
-            android:id="@+id/Phone"
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:id="@+id/TextInputPhone"
             android:layout_below="@+id/linearlayout_car"
             android:layout_marginTop="8dp"
-            android:ems="16"
-            android:inputType="textPersonName"
-            android:hint="Phone" />
+            android:layout_centerHorizontal="true">
+            <EditText
+                android:id="@+id/Phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:ems="16"
+                android:layout_marginTop="8dp"
+                android:inputType="textPersonName"
+                android:hint="Phone" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/Email"
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputLayout
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/Phone"
-            android:layout_marginTop="8dp"
-            android:ems="30"
-            android:inputType="textPersonName"
-            android:hint="Email" />
-
-
-        <EditText
-            android:id="@+id/ExtraInfo"
             android:layout_width="match_parent"
+            android:id="@+id/TextInputEmail"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/TextInputPhone"
+            android:layout_marginTop="8dp">
+            <EditText
+                android:id="@+id/Email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/TextInputPhone"
+                android:layout_marginTop="8dp"
+                android:ems="30"
+                android:inputType="textPersonName"
+                android:hint="Email" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_height="wrap_content"
-            android:layout_below="@+id/Email"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Extra Location Info (Floor, Level)" />
+            android:layout_width="match_parent"
+            android:id="@+id/TextInputExtra"
+            android:layout_below="@+id/TextInputEmail"
+            android:layout_marginTop="8dp">
+            <EditText
+                android:id="@+id/ExtraInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TextInputEmail"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Extra Location Info (Floor, Level)" />
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/button_next"
@@ -135,12 +178,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/ExtraInfo"
+            android:layout_below="@id/TextInputExtra"
             android:background="@drawable/layout_rounded_corners"
             style="?android:attr/borderlessButtonStyle"
             android:textColor="#ffffff"
             android:textStyle="bold"
             android:text="Next" />
+
     </RelativeLayout>
 
 </ScrollView>
