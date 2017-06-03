@@ -43,6 +43,31 @@ public class SelectServiceFragment extends android.support.v4.app.Fragment{
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_select_service, container, false);
         mListView = (ListView) view.findViewById(R.id.service_list_view);
+
+        /*Service mobewash = new Service("Mobe", "The full exterior car wash service 55min", "24");
+        Service mobewashPlus = new Service("MobePlus", "The full exterior and interior car wash service", "35");
+        ArrayList<Service> services = new ArrayList<Service>();
+        services.add(mobewash);
+        services.add(mobewashPlus);
+        ServiceListAdapter serviceListAdapter = new ServiceListAdapter(getActivity(), services);
+        mListView.setAdapter(serviceListAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Service result = (Service) parent.getItemAtPosition(position);
+                DataSingletonClass.getInstance().setSelectedService(result);
+                mListener.onServiceSelect();
+            }
+        });
+        */
+
+        return view;
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         restRequester.getArray("https://mobe-server.herokuapp.com/api/service", new RestRequester.OnArrayRequestCompleteListener() {
             @Override
             public void onArrayRequestComplete(Exception err, JSONArray jsonArray) {
@@ -65,25 +90,6 @@ public class SelectServiceFragment extends android.support.v4.app.Fragment{
                 }
             }
         });
-        /*Service mobewash = new Service("Mobe", "The full exterior car wash service 55min", "24");
-        Service mobewashPlus = new Service("MobePlus", "The full exterior and interior car wash service", "35");
-        ArrayList<Service> services = new ArrayList<Service>();
-        services.add(mobewash);
-        services.add(mobewashPlus);
-        ServiceListAdapter serviceListAdapter = new ServiceListAdapter(getActivity(), services);
-        mListView.setAdapter(serviceListAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Service result = (Service) parent.getItemAtPosition(position);
-                DataSingletonClass.getInstance().setSelectedService(result);
-                mListener.onServiceSelect();
-            }
-        });
-        */
-
-        return view;
-
     }
 
     @Override

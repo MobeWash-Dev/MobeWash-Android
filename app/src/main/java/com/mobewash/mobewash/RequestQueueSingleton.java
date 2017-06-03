@@ -12,19 +12,25 @@ import com.android.volley.toolbox.Volley;
  */
 
 public class RequestQueueSingleton {
-    private static RequestQueue INSTANCE = null;
+    private static RequestQueueSingleton INSTANCE = null;
+    private RequestQueue requestQueue;
 
-    public RequestQueueSingleton(Context context) {
+    private RequestQueueSingleton(Context context) {
+        requestQueue = Volley.newRequestQueue(context);
+    }
+
+    public static RequestQueueSingleton getInstance(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = Volley.newRequestQueue(context);
+            INSTANCE = new RequestQueueSingleton(context);
         }
+        return INSTANCE;
     }
 
     public void addToRequestQueue(JsonObjectRequest jsObjRequest) {
-        INSTANCE.add(jsObjRequest);
+        requestQueue.add(jsObjRequest);
     }
 
     public void addToRequestQueue(JsonArrayRequest jsonArrayRequest) {
-        INSTANCE.add(jsonArrayRequest);
+        requestQueue.add(jsonArrayRequest);
     }
 }

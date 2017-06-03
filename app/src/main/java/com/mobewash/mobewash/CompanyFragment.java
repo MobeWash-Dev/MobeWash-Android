@@ -3,6 +3,7 @@ package com.mobewash.mobewash;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,6 +36,7 @@ public class CompanyFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -44,6 +46,13 @@ public class CompanyFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_company, container, false);
         listView = (ListView) view.findViewById(R.id.List);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         RestRequester myReq = new RestRequester(this.getContext());
         myReq.getArray("https://mobe-server.herokuapp.com/api/company", new RestRequester.OnArrayRequestCompleteListener() {
@@ -74,12 +83,12 @@ public class CompanyFragment extends Fragment {
                             mListener.onCompanySelected();
                         }
                     });
+                } else {
+                    Log.e(TAG, "REQUEST ERROR", err);
                 }
             }
 
         });
-
-        return view;
     }
 
     @Override
