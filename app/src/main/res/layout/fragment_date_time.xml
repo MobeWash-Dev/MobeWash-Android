@@ -26,13 +26,29 @@
         android:layout_above="@+id/pickATimeText"
         android:layout_centerHorizontal="true" />
 -->
+
+    <TextView
+        android:id="@+id/textview_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="2017-5-25"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:id="@+id/button_edit_date"/>
+
     <TextView
         android:id="@+id/pickATimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:text="Pick a Time"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/textview_date"
         android:layout_centerHorizontal="true" />
 
     <ListView
