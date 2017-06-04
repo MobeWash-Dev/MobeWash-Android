@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity
 
         writeLoginTimeToDB(currentDateTimeString, instancetoken);
 
-        Log.v(TAG, instancetoken);
+        Log.v(TAG, "" + instancetoken);
 
         // Check if user is already logged in with Facebook
         AccessToken token = AccessToken.getCurrentAccessToken();
