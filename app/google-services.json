@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "91327651290",
+    "firebase_url": "https://mobewash-92bef.firebaseio.com",
+    "project_id": "mobewash-92bef",
+    "storage_bucket": "mobewash-92bef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91327651290:android:e9a6ed7a9bebf287",
+        "android_client_info": {
+          "package_name": "com.mobewash.mobewash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91327651290-6t7gf041ptccnshohsbgr0274fgb8uit.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobewash.mobewash",
+            "certificate_hash": "74a85a76f4ef08e62859b8e10144bae8f2f4927d"
+          }
+        },
+        {
+          "client_id": "91327651290-cstqiq3beu8shmmnquav1mj4d4hd3rit.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAol2BqAUg9NexN4hH1cEB9AjyGGi0WLN8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91327651290-cstqiq3beu8shmmnquav1mj4d4hd3rit.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
