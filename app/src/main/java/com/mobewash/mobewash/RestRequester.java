@@ -2,6 +2,7 @@ package com.mobewash.mobewash;
 
 import android.content.Context;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -34,6 +35,8 @@ public class RestRequester {
                 listener.onRequestComplete(error, null);
             }
         });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+                5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         mRequestQueue.addToRequestQueue(jsonObjectRequest);
     }
 
@@ -49,6 +52,8 @@ public class RestRequester {
                 listener.onArrayRequestComplete(error, null);
             }
         });
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+                5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         mRequestQueue.addToRequestQueue(jsonArrayRequest);
     }
 
