@@ -85,6 +85,46 @@ public class CompanyFragment extends Fragment {
                     });
                 } else {
                     Log.e(TAG, "REQUEST ERROR", err);
+                    retry();
+                }
+            }
+
+        });
+    }
+
+    private void retry() {
+        RestRequester myReq = new RestRequester(this.getContext());
+        myReq.getArray("https://mobe-server.herokuapp.com/api/company", new RestRequester.OnArrayRequestCompleteListener() {
+            @Override
+            public void onArrayRequestComplete(Exception err, JSONArray jsonArray) {
+                if(err == null) {
+                    final ArrayList<CompanyData> companies = JSONParser.parseCompanyData(jsonArray);
+                    Log.d(TAG, "Companies: " + companies);
+                    /*
+                    ArrayList<String> names = new ArrayList<String>();
+                    for( int i = 0; i < data.size(); i++){
+                        String coke = data.get(i).getServiceName() + ":  " + data.get(i).getaddress();
+                        names.add(coke);
+                    }
+
+                    String [] items = names.toArray(new String[names.size()]);
+
+                    ArrayAdapter<String> itemsAdapter =
+                            new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,items);
+                    */
+                    CompanyArrayAdapter itemsAdapter = new CompanyArrayAdapter(getContext(), companies);
+                    listView.setAdapter(itemsAdapter);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
+                            // Your code for item clicks
+                            sharedData.setCompanyName(companies.get(pos).getName());
+                            sharedData.setCompanyData(companies.get(pos));
+                            mListener.onCompanySelected();
+                        }
+                    });
+                } else {
+                    Log.e(TAG, "REQUEST ERROR", err);
+                    retry();
                 }
             }
 

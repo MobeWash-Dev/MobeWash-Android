@@ -1,9 +1,9 @@
 package com.mobewash.mobewash;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -12,7 +12,15 @@ import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.mobewash.mobewash.dummylogin.DummyLoginServer;
+
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Controller for:
@@ -30,10 +38,23 @@ public class LoginActivity extends AppCompatActivity
 
     private ProgressBar mProgressBar;
 
+    FirebaseDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //set up the database
+        database = FirebaseDatabase.getInstance();
+
+        //set up the device token and current time
+        String instancetoken = FirebaseInstanceId.getInstance().getToken();
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+
+        writeLoginTimeToDB(currentDateTimeString, instancetoken);
+
+        Log.v(TAG, "" + instancetoken);
 
         // Check if user is already logged in with Facebook
         AccessToken token = AccessToken.getCurrentAccessToken();
@@ -274,6 +295,24 @@ public class LoginActivity extends AppCompatActivity
     private void attemptDisplayHomeButton() {
         boolean canBack = getSupportFragmentManager().getBackStackEntryCount() > 0;
         getSupportActionBar().setDisplayHomeAsUpEnabled(canBack);
+    }
+
+    public void writeLoginTimeToDB(String time, String instanceID){
+        if(this.database != null){
+            DatabaseReference myRef = this.database.getReference();
+            String key = myRef.child("logintimes").push().getKey();
+            Map<String, Object> postValue = new HashMap<>();
+            postValue.put("/logintimes/" + key + "/instanceid/", instanceID);
+            postValue.put("/logintimes/" + key + "/lastlogintime/", time);
+
+            //update the database
+            myRef.updateChildren(postValue);
+        }
+
+        else{
+            Log.e(TAG, "database is null!");
+        }
+
     }
 
 }
