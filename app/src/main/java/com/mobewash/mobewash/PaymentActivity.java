@@ -52,13 +52,12 @@ public class PaymentActivity extends AppCompatActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-
     }
 
     @Override
     public void onBookPressed(Card card) {
         Intent bookedIntent = new Intent(PaymentActivity.this, BookedActivity.class);
-        bookedIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        bookedIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(bookedIntent);
     }
 }

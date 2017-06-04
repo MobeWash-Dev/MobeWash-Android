@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import android.widget.EditText;
 
-public class DateTimeActivity extends AppCompatActivity implements DateTimeFragment.OnDateTimeFragmentInteractionListener {
+public class DateTimeActivity extends AppCompatActivity {
 
 
     private EditText dateEditText;
@@ -17,11 +17,6 @@ public class DateTimeActivity extends AppCompatActivity implements DateTimeFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_time);
 
-
-    }
-
-    @Override
-    public void onDateTimeFragmentInteraction(Uri uri) {
 
     }
 }

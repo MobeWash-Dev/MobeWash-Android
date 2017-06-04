@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.roomorama.caldroid.CaldroidFragment;
@@ -19,6 +20,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFragment.OnDateTimeFragmentInteractionListener {
+
+    private DateTimeFragment mDateTimeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +62,17 @@ public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFrag
                 caldroidFragment.setCalendarDate(date);
                 caldroidFragment.setSelectedDate(date);
                 caldroidFragment.refreshView();
-                Intent detailsIntent = new Intent(DateTimeActivity2.this, DetailsActivity.class);
-                startActivity(detailsIntent);
+
+                //Intent detailsIntent = new Intent(DateTimeActivity2.this, DetailsActivity.class);
+                //startActivity(detailsIntent);
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                Log.d("HERE", calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
+                mDateTimeFragment.populateTimes("2017-5-25");
+                getSupportFragmentManager().beginTransaction().show(mDateTimeFragment).commit();
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.calendar1);
+                linearLayout.setVisibility(View.GONE);
             }
 
             @Override
@@ -84,7 +96,10 @@ public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFrag
         t.commit();
 
 
+        mDateTimeFragment = new DateTimeFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.framelayout_time_container, mDateTimeFragment).commit();
 
+        getSupportFragmentManager().beginTransaction().hide(mDateTimeFragment).commit();
     }
 
 
@@ -163,7 +178,15 @@ public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFrag
 
 
     @Override
-    public void onDateTimeFragmentInteraction(Uri uri) {
+    public void onDateTimeSelected() {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        startActivity(intent);
+    }
 
+    @Override
+    public void onEditCalendar() {
+        getSupportFragmentManager().beginTransaction().hide(mDateTimeFragment).commit();
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.calendar1);
+        linearLayout.setVisibility(View.VISIBLE);
     }
 }

@@ -9,31 +9,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.mobewash.mobewash.models.Appointment;
+import com.mobewash.mobewash.models.SlotTime;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class DateTimeFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    private EditText dateEditText;
-    private EditText timeEditText;
+public class DateTimeFragment extends Fragment{
 
     private OnDateTimeFragmentInteractionListener mListener;
-    private Calendar firstDate;
-    private DatePickerDialog dpd;
-    private View datePickerView;
 
     public DateTimeFragment() {
         // Required empty public constructor
@@ -43,20 +37,6 @@ public class DateTimeFragment extends Fragment implements DatePickerDialog.OnDat
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*Calendar now = Calendar.getInstance();
-        final DatePickerDialog dpd = DatePickerDialog.newInstance(
-                DateTimeFragment.this,
-                now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH),
-                now.get(Calendar.DAY_OF_MONTH)
-        );
-
-        int[] enabledDays = {2,3};
-        Calendar[] enabledDates = new Calendar[enabledDays.length*100];
-        Calendar firstDate = addEnabledDates(enabledDates,enabledDays);
-        this.firstDate = firstDate;
-        dpd.setSelectableDays(enabledDates);
-        this.dpd = dpd;*/
 
     }
 
@@ -65,29 +45,20 @@ public class DateTimeFragment extends Fragment implements DatePickerDialog.OnDat
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_date_time, container, false);
-        /*this.datePickerView = view;
-        EditText dateEditText = (EditText)view.findViewById(R.id.dateEditText);
-        //EditText timeEditText = (EditText)findViewById(R.id.timeEditText);
-        this.dateEditText = dateEditText;
-        //this.timeEditText = timeEditText;
-        dateEditText.setText("" + firstDate.get(Calendar.DATE) + "/" + (firstDate.get(Calendar.MONTH) + 1) + "/" + firstDate.get(Calendar.YEAR));
-
-        dpd.show(getActivity().getFragmentManager(), "Date Picker");
-        dateEditText.setOnClickListener(new View.OnClickListener(){
+        Button button = (Button) view.findViewById(R.id.button_edit_date);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dpd.show(getActivity().getFragmentManager(),"Date Picker");
+                mListener.onEditCalendar();
             }
         });
-        */
-
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        populateTimes();
+        //populateTimes("2017-05-25");
     }
 
     @Override
@@ -107,57 +78,74 @@ public class DateTimeFragment extends Fragment implements DatePickerDialog.OnDat
         mListener = null;
     }
 
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        dateEditText.setText("" + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-        populateTimes();
-    }
-
-    private void populateTimes() {
+    public void populateTimes(String datetime) {
+        RestRequester restRequester = new RestRequester(getContext());
+        String url = "https://mobe-server.herokuapp.com/api/appointment/" + datetime;
+        restRequester.getArray(url, new RestRequester.OnArrayRequestCompleteListener() {
+            @Override
+            public void onArrayRequestComplete(Exception err, JSONArray jsonArray) {
+                ArrayList<Appointment> appointments = Appointment.parseAppointmentList(jsonArray);
+                updateList(appointments);
+            }
+        });
+        /*
         String[] myTimes = { "10:00am", "12:00pm", "6:00pm" };
         ListAdapter timeAdapter= new CustomTimeAdapter(getContext(),myTimes);
         ListView timeListView = (ListView) getView().findViewById(R.id.timeListView);
         timeListView.setAdapter(timeAdapter);
+        */
     }
 
-    private Calendar addEnabledDates(Calendar[] enabledDates, int[] enabledDays) {
-
-        //our format of JSON file has 0-6 for Monday to Sunday which isn't desirable
-        boolean foundFirstDate = false;
-        Calendar firstDate = Calendar.getInstance();
-        boolean[] formattedEnabledDays = new boolean[7];
-        for(int i = 0; i < enabledDays.length ; i++) {
-            if(enabledDays[i] == 6)
-                formattedEnabledDays[0] = true;
-            else
-                formattedEnabledDays[enabledDays[i]+1] = true;
-        }//set formattedEnabledDays to be true
-        for(int i = 0; i < 7; i++) {
-            Log.d("myTag","" + i + " " + formattedEnabledDays[i]);
+    private void updateList(ArrayList<Appointment> appointments) {
+        ArrayList<SlotTime> slots = new ArrayList<>();
+        int slotCap = DataSingletonClass.getInstance().getCompanyData().getSetting().getslotCap();
+        int start = 9;
+        int end = 19;
+        int increment = 2;
+        for (int i = start; i < end; i += increment) {
+            slots.add(new SlotTime(i, slotCap, slotCap));
         }
-        int counter = 0;
-        for(int i = 0; i < 7; i++) {
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.DATE,i);
-            if(formattedEnabledDays[cal.get(Calendar.DAY_OF_WEEK)-1]) {
-                if(!foundFirstDate) {
-                    foundFirstDate = true;
-                    firstDate = cal;
-                }
-                for (int j = 0; j < 100; j++) {
-                    Calendar calToAdd = Calendar.getInstance();
-                    calToAdd.add(Calendar.DATE,i);
-                    calToAdd.add(Calendar.DATE,j*7);
-                    enabledDates[counter] = calToAdd;
-                    counter++;
+        for (int i = 0; i < appointments.size(); i++) {
+            int apptTime = getParsedTime(appointments.get(i).getTime());
+            for (SlotTime slotTime : slots) {
+                if (slotTime.getTime() == apptTime) {
+                    slotTime.setCount(slotTime.getCount() - 1);
                 }
             }
         }
-        return firstDate;
+        /*
+        String[] myTimes = new String[slots.size()];
+        for (int i = 0; i < slots.size(); i++) {
+            myTimes[i] = TIMES[slots.get(i).getTime()];
+        }
+        */
+        ListAdapter timeAdapter= new CustomTimeAdapter(getContext(), slots);
+        ListView timeListView = (ListView) getView().findViewById(R.id.timeListView);
+        timeListView.setAdapter(timeAdapter);
+        timeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mListener.onDateTimeSelected();
+            }
+        });
+    }
+
+    private static final String[] TIMES = {"12:00am","1:00am","2:00am","3:00am","4:00am","5:00am","6:00am",
+            "7:00am","8:00am","9:00am","10:00am","11:00am","12:00pm","1:00pm","2:00pm","3:00pm","4:00pm",
+            "5:00pm","6:00pm","7:00pm","8:00pm","9:00pm","10:00pm","11:00pm"};
+
+    private int getParsedTime(String time) {
+        for (int i = 0; i < TIMES.length; i++) {
+            if (time.equals(TIMES[i])) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     public interface OnDateTimeFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onDateTimeFragmentInteraction(Uri uri);
+        void onDateTimeSelected();
+        void onEditCalendar();
     }
 }
