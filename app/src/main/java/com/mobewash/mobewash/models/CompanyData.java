@@ -52,6 +52,10 @@ public class CompanyData {
     public class Setting {
         private int[] washDays;
         private int slotCap;
+        private int washCap;
+        private int startTime;
+        private int endTime;
+        private int increment;
 
         Setting(JSONObject jsonObject) throws JSONException {
             JSONArray washDaysArray = jsonObject.getJSONArray("washDays");
@@ -60,7 +64,11 @@ public class CompanyData {
                 this.washDays[i] = washDaysArray.getInt(i);
             }
             this.slotCap = jsonObject.getInt("slotCap");
-
+            JSONObject slotSetting = jsonObject.getJSONObject("slotSetting");
+            this.washCap = slotSetting.getInt("washCap");
+            this.startTime = slotSetting.getInt("startTime");
+            this.endTime = slotSetting.getInt("endTime");
+            this.increment = slotSetting.getInt("increment");
         }
 
         public int[] getWashDays() {
@@ -83,6 +91,22 @@ public class CompanyData {
             return "{\n"
                     + "washDays: " + washDaysString + "\n"
                     + "slotCap: " + getslotCap() + "\n";
+        }
+
+        public int getWashCap() {
+            return washCap;
+        }
+
+        public int getStartTime() {
+            return startTime;
+        }
+
+        public int getEndTime() {
+            return endTime;
+        }
+
+        public int getIncrement() {
+            return increment;
         }
     }
 

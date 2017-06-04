@@ -98,10 +98,11 @@ public class DateTimeFragment extends Fragment{
 
     private void updateList(ArrayList<Appointment> appointments) {
         ArrayList<SlotTime> slots = new ArrayList<>();
-        int slotCap = DataSingletonClass.getInstance().getCompanyData().getSetting().getslotCap();
-        int start = 9;
-        int end = 19;
-        int increment = 2;
+        DataSingletonClass singleton = DataSingletonClass.getInstance();
+        int slotCap = singleton.getCompanyData().getSetting().getslotCap();
+        int start = singleton.getCompanyData().getSetting().getStartTime();
+        int end = singleton.getCompanyData().getSetting().getEndTime();
+        int increment = singleton.getCompanyData().getSetting().getIncrement();
         for (int i = start; i < end; i += increment) {
             slots.add(new SlotTime(i, slotCap, slotCap));
         }
