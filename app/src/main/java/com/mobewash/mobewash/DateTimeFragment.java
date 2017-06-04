@@ -9,12 +9,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.mobewash.mobewash.models.Appointment;
+import com.mobewash.mobewash.models.SlotTime;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -45,7 +51,7 @@ public class DateTimeFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        populateTimes("date-time");
+        //populateTimes("2017-05-25");
     }
 
     @Override
@@ -53,6 +59,7 @@ public class DateTimeFragment extends Fragment{
         super.onAttach(context);
         if (context instanceof OnDateTimeFragmentInteractionListener) {
             mListener = (OnDateTimeFragmentInteractionListener) context;
+            mListener.onDateTimeAttach(this);
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnDateTimeFragmentInteractionListener");
@@ -65,8 +72,16 @@ public class DateTimeFragment extends Fragment{
         mListener = null;
     }
 
-    private void populateTimes(String datetime) {
-
+    public void populateTimes(String datetime) {
+        RestRequester restRequester = new RestRequester(getContext());
+        String url = "https://mobe-server.herokuapp.com/api/appointment/" + datetime;
+        restRequester.getArray(url, new RestRequester.OnArrayRequestCompleteListener() {
+            @Override
+            public void onArrayRequestComplete(Exception err, JSONArray jsonArray) {
+                ArrayList<Appointment> appointments = Appointment.parseAppointmentList(jsonArray);
+                updateList(appointments);
+            }
+        });
         /*
         String[] myTimes = { "10:00am", "12:00pm", "6:00pm" };
         ListAdapter timeAdapter= new CustomTimeAdapter(getContext(),myTimes);
@@ -75,8 +90,56 @@ public class DateTimeFragment extends Fragment{
         */
     }
 
+    private void updateList(ArrayList<Appointment> appointments) {
+        ArrayList<SlotTime> slots = new ArrayList<>();
+        int slotCap = DataSingletonClass.getInstance().getCompanyData().getSetting().getslotCap();
+        int start = 9;
+        int end = 19;
+        int increment = 2;
+        for (int i = start; i < end; i += increment) {
+            slots.add(new SlotTime(i, slotCap, slotCap));
+        }
+        for (int i = 0; i < appointments.size(); i++) {
+            int apptTime = getParsedTime(appointments.get(i).getTime());
+            for (SlotTime slotTime : slots) {
+                if (slotTime.getTime() == apptTime) {
+                    slotTime.setCount(slotTime.getCount() - 1);
+                }
+            }
+        }
+        /*
+        String[] myTimes = new String[slots.size()];
+        for (int i = 0; i < slots.size(); i++) {
+            myTimes[i] = TIMES[slots.get(i).getTime()];
+        }
+        */
+        ListAdapter timeAdapter= new CustomTimeAdapter(getContext(), slots);
+        ListView timeListView = (ListView) getView().findViewById(R.id.timeListView);
+        timeListView.setAdapter(timeAdapter);
+        timeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mListener.onDateTimeSelected();
+            }
+        });
+    }
+
+    private static final String[] TIMES = {"12:00am","1:00am","2:00am","3:00am","4:00am","5:00am","6:00am",
+            "7:00am","8:00am","9:00am","10:00am","11:00am","12:00pm","1:00pm","2:00pm","3:00pm","4:00pm",
+            "5:00pm","6:00pm","7:00pm","8:00pm","9:00pm","10:00pm","11:00pm"};
+
+    private int getParsedTime(String time) {
+        for (int i = 0; i < TIMES.length; i++) {
+            if (time.equals(TIMES[i])) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
     public interface OnDateTimeFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onDateTimeFragmentInteraction(Uri uri);
+        void onDateTimeSelected();
+        void onDateTimeAttach(DateTimeFragment dateTimeFragment);
     }
 }

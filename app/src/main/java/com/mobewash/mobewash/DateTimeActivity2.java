@@ -20,6 +20,8 @@ import java.util.Date;
 
 public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFragment.OnDateTimeFragmentInteractionListener {
 
+    private DateTimeFragment mDateTimeFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +61,14 @@ public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFrag
                 caldroidFragment.setCalendarDate(date);
                 caldroidFragment.setSelectedDate(date);
                 caldroidFragment.refreshView();
-                Intent detailsIntent = new Intent(DateTimeActivity2.this, DetailsActivity.class);
-                startActivity(detailsIntent);
+
+                //Intent detailsIntent = new Intent(DateTimeActivity2.this, DetailsActivity.class);
+                //startActivity(detailsIntent);
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                Log.d("HERE", calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
+                mDateTimeFragment.populateTimes("2017-5-25");
             }
 
             @Override
@@ -163,7 +171,13 @@ public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFrag
 
 
     @Override
-    public void onDateTimeFragmentInteraction(Uri uri) {
+    public void onDateTimeSelected() {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        startActivity(intent);
+    }
 
+    @Override
+    public void onDateTimeAttach(DateTimeFragment dateTimeFragment) {
+        this.mDateTimeFragment = dateTimeFragment;
     }
 }
