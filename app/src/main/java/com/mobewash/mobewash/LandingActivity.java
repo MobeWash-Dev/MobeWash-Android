@@ -46,6 +46,7 @@ public class LandingActivity extends AppCompatActivity
                 startActivity(companyIntent);
             }
         });
+        RequestQueueSingleton.getInstance(this);
     }
 
     @Override
