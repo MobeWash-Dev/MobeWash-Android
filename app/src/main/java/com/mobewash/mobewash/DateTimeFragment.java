@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -44,7 +45,13 @@ public class DateTimeFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_date_time, container, false);
-
+        Button button = (Button) view.findViewById(R.id.button_edit_date);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onEditCalendar();
+            }
+        });
         return view;
     }
 
@@ -59,7 +66,6 @@ public class DateTimeFragment extends Fragment{
         super.onAttach(context);
         if (context instanceof OnDateTimeFragmentInteractionListener) {
             mListener = (OnDateTimeFragmentInteractionListener) context;
-            mListener.onDateTimeAttach(this);
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnDateTimeFragmentInteractionListener");
@@ -140,6 +146,6 @@ public class DateTimeFragment extends Fragment{
     public interface OnDateTimeFragmentInteractionListener {
         // TODO: Update argument type and name
         void onDateTimeSelected();
-        void onDateTimeAttach(DateTimeFragment dateTimeFragment);
+        void onEditCalendar();
     }
 }
