@@ -15,7 +15,7 @@ public class BookedActivity extends AppCompatActivity implements BookedFragment.
     @Override
     public void onReturnPressed() {
         Intent intent = new Intent(getApplicationContext(), LandingActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 }

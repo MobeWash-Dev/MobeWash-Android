@@ -21,7 +21,12 @@ public class DateTimeActivity extends AppCompatActivity implements DateTimeFragm
     }
 
     @Override
-    public void onDateTimeFragmentInteraction(Uri uri) {
+    public void onDateTimeSelected() {
+
+    }
+
+    @Override
+    public void onDateTimeAttach(DateTimeFragment dateTimeFragment) {
 
     }
 }
