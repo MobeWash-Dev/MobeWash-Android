@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.mobewash.mobewash.SettingsActivity">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/googleg_standard_color_18"
+        android:contentDescription=""
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/SettingsTextView"
+        style="@android:style/Widget.AutoCompleteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="Settings"
+        android:textSize="30sp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/Settingslinearlayout_names"
+        android:layout_below="@+id/SettingsTextView"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1">
+            <EditText
+                android:id="@+id/SettingsFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="8"
+                android:hint="First Name" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1">
+            <EditText
+                android:id="@+id/SettingsLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="8"
+                android:hint="Last Name" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Settingslinearlayout_names"
+        android:layout_marginTop="8dp"
+        android:id="@+id/Settingslinearlayout_car"
+        android:orientation="horizontal">
+        <android.support.design.widget.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1">
+            <EditText
+                android:id="@+id/SettingsMake"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:hint="Make/Model" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="1">
+            <EditText
+                android:id="@+id/SettingsColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:hint="Color" />
+        </android.support.design.widget.TextInputLayout>
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/Settingslinearlayout_car"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/SettingsTextInputLicense">
+        <EditText
+            android:id="@+id/SettingsLicense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="8"
+            android:inputType="textPersonName"
+            android:hint="License Plate" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/SettingsTextInputPhone"
+        android:layout_below="@+id/SettingsTextInputLicense"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true">
+        <EditText
+            android:id="@+id/SettingsPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:ems="16"
+            android:layout_marginTop="8dp"
+            android:inputType="textPersonName"
+            android:hint="Phone" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/SettingsTextInputEmail"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/SettingsTextInputPhone"
+        android:layout_marginTop="8dp">
+        <EditText
+            android:id="@+id/SettingsEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/TextInputPhone"
+            android:layout_marginTop="8dp"
+            android:ems="30"
+            android:inputType="textPersonName"
+            android:hint="Email" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/SettingsTextInputExtra"
+        android:layout_below="@+id/SettingsTextInputEmail"
+        android:layout_marginTop="8dp">
+        <EditText
+            android:id="@+id/SettingsExtraInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/SettingsTextInputEmail"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Extra Location Info (Floor, Level)" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/Settingsbutton_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/SettingsTextInputExtra"
+        android:background="@drawable/layout_rounded_corners"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:text="Save" />
+
+</RelativeLayout>
+
+</ScrollView>
+

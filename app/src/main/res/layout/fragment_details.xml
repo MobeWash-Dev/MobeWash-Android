@@ -103,26 +103,30 @@
                     android:hint="Color" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/TextInputLicense">
-                <EditText
-                    android:id="@+id/License"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:inputType="textPersonName"
-                    android:hint="License Plate" />
-            </android.support.design.widget.TextInputLayout>
+
         </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:id="@+id/TextInputPhone"
             android:layout_below="@+id/linearlayout_car"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/TextInputLicense">
+            <EditText
+                android:id="@+id/License"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:hint="License Plate" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/TextInputPhone"
+            android:layout_below="@+id/TextInputLicense"
             android:layout_marginTop="8dp"
             android:layout_centerHorizontal="true">
             <EditText
