@@ -15,9 +15,7 @@ import com.facebook.login.LoginResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.mobewash.mobewash.BlankFragment;
 import com.mobewash.mobewash.LandingActivity;
-import com.mobewash.mobewash.MainActivity;
 import com.mobewash.mobewash.R;
 import com.mobewash.mobewash.dummylogin.DummyLoginServer;
 
