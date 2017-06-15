@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mobewash.mobewash.PaymentActivity">
+    tools:context="com.mobewash.mobewash.booking.PaymentActivity">
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.mobewash.mobewash.PaymentFragment"
+        android:name="com.mobewash.mobewash.booking.PaymentFragment"
         android:layout_width="373dp"
         android:layout_height="509dp"
         tools:layout_editor_absoluteX="7dp"

@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mobewash.mobewash.SelectServiceActivity">
-
+    tools:context="com.mobewash.mobewash.booking.SelectServiceActivity">
 
     <fragment
         android:id="@+id/fragment6"
-        android:name="com.mobewash.mobewash.SelectServiceFragment"
+        android:name="com.mobewash.mobewash.booking.SelectServiceFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

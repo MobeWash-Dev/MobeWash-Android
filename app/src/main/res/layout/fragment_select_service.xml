@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.mobewash.mobewash.SelectServiceFragment"
+    tools:context="com.mobewash.mobewash.booking.SelectServiceFragment"
     android:orientation="vertical">
     <ImageView
         android:layout_marginTop="100px"

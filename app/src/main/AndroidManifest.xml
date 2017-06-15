@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".MobeWashApplication">
 
         <!-- For Facebook login -->
         <meta-data
@@ -37,7 +38,7 @@
 
         <!-- Our Activities -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,18 +47,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PaymentActivity"
+            android:name=".booking.PaymentActivity"
             android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DetailsActivity" />
+                android:value=".booking.DetailsActivity" />
         </activity>
-        <activity android:name=".DetailsActivity">
+        <activity android:name=".booking.DetailsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DateTimeActivity2" />
+                android:value=".booking.DateTimeActivity" />
         </activity>
-        <activity android:name=".CompanyActivity">
+        <activity android:name=".booking.CompanyActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LandingActivity" />
@@ -73,21 +74,20 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".DateTimeActivity" />
         <activity
-            android:name=".DateTimeActivity2">
+            android:name=".booking.DateTimeActivity">
             <!--android:label="@string/title_activity_date_time2"
             android:theme="@style/AppTheme.NoActionBar">-->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SelectServiceActivity" />
+                android:value=".booking.SelectServiceActivity" />
         </activity>
-        <activity android:name=".SelectServiceActivity">
+        <activity android:name=".booking.SelectServiceActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CompanyActivity" />
+                android:value=".booking.CompanyActivity" />
         </activity>
-        <activity android:name=".BookedActivity" />
+        <activity android:name=".booking.BookedActivity" />
     </application>
 
 </manifest>
