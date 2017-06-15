@@ -73,7 +73,6 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".DateTimeActivity" />
         <activity
             android:name=".DateTimeActivity2">
             <!--android:label="@string/title_activity_date_time2"
