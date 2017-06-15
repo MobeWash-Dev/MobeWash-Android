@@ -42,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DETAILS"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:id="@+id/textview_details"
@@ -91,10 +92,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@id/textview_lastname"
+                android:layout_marginTop="16dp"
                 android:text="UC SAN DIEGO SELECTED"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#000000"
-                android:textStyle="bold"
-                android:layout_marginTop="16dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -193,6 +195,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PAYMENT"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:id="@+id/textview_payment"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/relativelayout_details"

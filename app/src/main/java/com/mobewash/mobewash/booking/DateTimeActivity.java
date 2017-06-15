@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobewash.mobewash.R;
@@ -23,12 +24,14 @@ import java.util.Date;
 public class DateTimeActivity extends AppCompatActivity implements DateTimeFragment.OnDateTimeFragmentInteractionListener {
 
     private DateTimeFragment mDateTimeFragment;
+    private TextView mDateTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_time);
 
+        mDateTextView = (TextView) findViewById(R.id.textview_date_detail);
 
         final CaldroidFragment caldroidFragment = new CaldroidFragment();
         final Bundle args = new Bundle();
@@ -74,6 +77,7 @@ public class DateTimeActivity extends AppCompatActivity implements DateTimeFragm
                 getSupportFragmentManager().beginTransaction().show(mDateTimeFragment).commit();
                 LinearLayout linearLayout = (LinearLayout) findViewById(R.id.calendar1);
                 linearLayout.setVisibility(View.GONE);
+                mDateTextView.setVisibility(View.GONE);
             }
 
             @Override
@@ -189,5 +193,6 @@ public class DateTimeActivity extends AppCompatActivity implements DateTimeFragm
         getSupportFragmentManager().beginTransaction().hide(mDateTimeFragment).commit();
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.calendar1);
         linearLayout.setVisibility(View.VISIBLE);
+        mDateTextView.setVisibility(View.VISIBLE);
     }
 }
