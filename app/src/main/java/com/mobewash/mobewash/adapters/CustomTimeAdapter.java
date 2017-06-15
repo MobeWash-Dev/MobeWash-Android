@@ -1,4 +1,4 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.adapters;
 
 /**
  * Created by sahib grover on 5/18/17.
@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.mobewash.mobewash.R;
 import com.mobewash.mobewash.models.Appointment;
 import com.mobewash.mobewash.models.SlotTime;
 

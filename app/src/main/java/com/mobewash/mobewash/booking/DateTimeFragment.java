@@ -1,4 +1,4 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.booking;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.mobewash.mobewash.R;
+import com.mobewash.mobewash.adapters.CustomTimeAdapter;
 import com.mobewash.mobewash.models.Appointment;
 import com.mobewash.mobewash.models.BookingDataSingleton;
 import com.mobewash.mobewash.models.SlotTime;

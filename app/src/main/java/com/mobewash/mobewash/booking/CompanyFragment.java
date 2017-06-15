@@ -1,4 +1,4 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.booking;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.mobewash.mobewash.R;
+import com.mobewash.mobewash.adapters.CompanyArrayAdapter;
 import com.mobewash.mobewash.models.BookingDataSingleton;
 import com.mobewash.mobewash.models.CompanyData;
 import com.mobewash.mobewash.models.JSONParser;
@@ -109,7 +111,7 @@ public class CompanyFragment extends Fragment {
         mListener = null;
     }
 
-    interface OnCompanyFragmentInteractionListener {
+    public interface OnCompanyFragmentInteractionListener {
         void onCompanySelected();
     }
 }

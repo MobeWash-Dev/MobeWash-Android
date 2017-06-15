@@ -1,10 +1,8 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.booking;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
-import com.stripe.android.Stripe;
-import com.stripe.android.TokenCallback;
-import com.stripe.android.exception.CardException;
+import com.mobewash.mobewash.R;
 import com.stripe.android.model.Card;
-import com.stripe.android.model.Token;
 import com.stripe.android.view.CardInputWidget;
 
 import java.util.ArrayList;

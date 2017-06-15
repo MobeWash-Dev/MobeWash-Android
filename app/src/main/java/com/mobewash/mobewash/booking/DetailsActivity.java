@@ -1,11 +1,11 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.booking;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
-import android.widget.EditText;
+
+import com.mobewash.mobewash.R;
 
 public class DetailsActivity extends AppCompatActivity implements DetailsFragment.OnDetailsFragmentInteractionListener {
 

@@ -6,6 +6,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.facebook.login.LoginManager;
+import com.mobewash.mobewash.booking.BookedFragment;
+import com.mobewash.mobewash.booking.CompanyFragment;
+import com.mobewash.mobewash.booking.DetailsFragment;
+import com.mobewash.mobewash.booking.PaymentFragment;
+import com.mobewash.mobewash.booking.SelectServiceFragment;
 import com.mobewash.mobewash.login.LoginActivity;
 import com.stripe.android.model.Card;
 

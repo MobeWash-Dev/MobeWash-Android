@@ -1,4 +1,4 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.booking;
 
 /**
  * Created by Danny on 6/3/2017.

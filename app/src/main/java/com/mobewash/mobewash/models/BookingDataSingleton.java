@@ -1,6 +1,6 @@
 package com.mobewash.mobewash.models;
 
-import com.mobewash.mobewash.DetailsClass;
+import com.mobewash.mobewash.booking.DetailsClass;
 
 /**
  * Created by Danny on 5/13/2017.
@@ -9,7 +9,7 @@ import com.mobewash.mobewash.DetailsClass;
 public class BookingDataSingleton {
     private static final BookingDataSingleton ourInstance = new BookingDataSingleton();
 
-    static BookingDataSingleton getInstance() {
+    public static BookingDataSingleton getInstance() {
         return ourInstance;
     }
 

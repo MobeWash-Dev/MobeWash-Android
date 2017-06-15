@@ -1,4 +1,4 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.booking;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.mobewash.mobewash.R;
 
 public class BookAWashFragment extends Fragment {
 

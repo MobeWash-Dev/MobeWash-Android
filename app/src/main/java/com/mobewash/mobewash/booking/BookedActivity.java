@@ -1,8 +1,11 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.booking;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.mobewash.mobewash.LandingActivity;
+import com.mobewash.mobewash.R;
 
 public class BookedActivity extends AppCompatActivity implements BookedFragment.OnBookedFragmentInteractionListener {
 

@@ -1,4 +1,4 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.booking;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.facebook.CallbackManager;
+import com.mobewash.mobewash.R;
+import com.mobewash.mobewash.adapters.ServiceListAdapter;
 import com.mobewash.mobewash.models.BookingDataSingleton;
 import com.mobewash.mobewash.models.JSONParser;
 import com.mobewash.mobewash.models.WashService;

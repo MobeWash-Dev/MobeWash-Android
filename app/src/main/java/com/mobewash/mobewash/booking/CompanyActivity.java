@@ -1,9 +1,10 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.booking;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.mobewash.mobewash.R;
 
 public class CompanyActivity extends AppCompatActivity implements CompanyFragment.OnCompanyFragmentInteractionListener {
 

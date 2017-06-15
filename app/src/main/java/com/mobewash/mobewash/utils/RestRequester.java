@@ -57,11 +57,11 @@ public class RestRequester {
         mRequestQueue.addToRequestQueue(jsonArrayRequest);
     }
 
-    interface OnRequestCompleteListener {
+    public interface OnRequestCompleteListener {
         void onRequestComplete(Exception err, JSONObject jsonObject);
     }
 
-    interface OnArrayRequestCompleteListener {
+    public interface OnArrayRequestCompleteListener {
         void onArrayRequestComplete(Exception err, JSONArray jsonArray);
     }
 }

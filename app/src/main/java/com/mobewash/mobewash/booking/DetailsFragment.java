@@ -1,4 +1,4 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.booking;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.mobewash.mobewash.R;
 import com.mobewash.mobewash.models.BookingDataSingleton;
 
 import java.util.regex.Matcher;
