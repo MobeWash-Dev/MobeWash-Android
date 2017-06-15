@@ -1,10 +1,10 @@
-package com.mobewash.mobewash.booking;
+package com.mobewash.mobewash.models;
 
 /**
  * Created by Danny on 6/3/2017.
  */
 
-public class DetailsClass {
+public class UserDetails {
 
     private String firstName = "";
     private String lastName = "";
@@ -16,7 +16,7 @@ public class DetailsClass {
     private String license = "";
     private String Extras = "";
 
-    public DetailsClass() {
+    public UserDetails() {
     }
 
     public void setFirstName(String firstName) {

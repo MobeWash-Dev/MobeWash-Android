@@ -21,14 +21,13 @@
             android:contentDescription=""
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
+
         <TextView
             android:id="@+id/TextView"
-            style="@android:style/Widget.AutoCompleteTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:text="Details"
-            android:textSize="30sp"
+            android:text="DETAILS"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:layout_marginTop="17dp"
             android:layout_below="@+id/imageView2"
             android:layout_alignParentStart="true" />

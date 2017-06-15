@@ -3,23 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     tools:context="com.mobewash.mobewash.booking.BookedFragment">
 
     <TextView
         android:id="@+id/textview_success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SUCCESS"
-        android:layout_margin="16dp"
-        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:text="SUCCESS"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <Button
         android:id="@+id/button_return_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:text="RETURN TO HOME"
         android:background="@drawable/layout_rounded_corners"
         android:textColor="#ffffff"

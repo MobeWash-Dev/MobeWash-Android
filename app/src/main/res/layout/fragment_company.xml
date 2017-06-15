@@ -18,9 +18,19 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_margin="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:text="PICK A COMPANY TO START"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView2"
+        android:id="@+id/textview_company_detail"/>
+
     <ListView
         android:id="@+id/List"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView2" />
+        android:layout_below="@id/textview_company_detail" />
 </RelativeLayout>

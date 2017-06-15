@@ -2,30 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp"
     tools:context="com.mobewash.mobewash.booking.DateTimeFragment">
-<!--
-    <TextView
-        android:id="@+id/pickADateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:text="Pick a Date"
-        android:textSize="20dp"
-        android:layout_above="@+id/dateEditText"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:id="@+id/dateEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="none"
-        android:textColor="@color/colorAccent"
-        android:layout_marginBottom="81dp"
-        android:layout_above="@+id/pickATimeText"
-        android:layout_centerHorizontal="true" />
--->
 
     <TextView
         android:id="@+id/textview_date"
@@ -40,14 +21,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit"
-        android:id="@+id/button_edit_date"/>
+        android:id="@+id/button_edit_date"
+        android:background="@drawable/rounded_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="#398bff"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/pickATimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:text="Pick a Time"
+        android:text="PICK A TIME"
         android:layout_below="@+id/textview_date"
         android:layout_centerHorizontal="true" />
 

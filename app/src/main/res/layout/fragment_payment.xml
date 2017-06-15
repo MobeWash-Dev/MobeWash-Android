@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:wallet="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -23,107 +23,208 @@
         tools:layout="@layout/fragment_payment" />
     />-->
 
-    <!--Car and Wash Details-->
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="225dp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="18dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="17dp"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/CarView"
-            android:layout_width="162dp"
-            android:layout_height="165dp"
-            android:contentDescription=""
-            stripe:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal"
-            tools:ignore="ContentDescription"
-            tools:layout_constraintTop_creator="1"
-            tools:layout_constraintRight_creator="1"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="17dp"
-            app:layout_constraintTop_toTopOf="@+id/DetailsView" />
-
-        <ListView
-            android:id="@+id/DetailsView"
-            android:layout_width="125dp"
-            android:layout_height="170dp"
-            android:headerDividersEnabled="true"
-            tools:layout_constraintTop_creator="1"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="27dp"
-            tools:layout_constraintLeft_creator="1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="16dp"
-            tools:ignore="RtlHardcoded" />
-    </android.support.constraint.ConstraintLayout>
-
-    <!--Book Button-->
-    <Button
-        android:id="@+id/BookButton"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginStart="22dp"
-        android:text="Book"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:ignore="HardcodedText"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:background="@drawable/layout_rounded_corners"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"/>
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
-    <!--Card Details-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativelayout_details">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="148dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1">
+            <!-- Left Side -->
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DETAILS"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:id="@+id/textview_details"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FIRST NAME"
+                android:id="@+id/textview_firstname_detail"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textview_details"
+                android:textColor="#398bff"/>
+
+            <TextView
+                android:id="@+id/textview_firstname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textview_firstname_detail"
+                android:text="SHUANGLI"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LAST NAME"
+                android:id="@+id/textview_lastname_detail"
+                android:layout_alignParentStart="true"
+                android:textColor="#398bff"
+                android:layout_below="@+id/textview_firstname"/>
+
+            <TextView
+                android:id="@+id/textview_lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textview_lastname_detail"
+                android:text="ZHOU"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/textview_lastname"
+                android:layout_marginTop="16dp"
+                android:text="UC SAN DIEGO SELECTED"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GEISEL"
+                android:id="@+id/textview_extra"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/textview_company"/>
+
+            <TextView
+                android:id="@+id/textview_dayofweek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textview_extra"
+                android:text="THURSDAY"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/textview_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textview_dayofweek"
+                android:text="MAY 19 3 - 5 PM"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <!-- Right Side -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MAKE"
+                android:id="@+id/textview_make_detail"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/textview_details"
+                android:textColor="#398bff"/>
+
+            <TextView
+                android:id="@+id/textview_make"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/textview_make_detail"
+                android:text="BMW 428i"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COLOR"
+                android:id="@+id/textview_color_detail"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/textview_make"
+                android:textColor="#398bff"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BLUE"
+                android:id="@+id/textview_color"
+                android:layout_alignParentEnd="true"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_below="@+id/textview_color_detail" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LICENSE PLATE"
+                android:id="@+id/textview_license_detail"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/textview_color"
+                android:textColor="#398bff"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7NQL961"
+                android:id="@+id/textview_license"
+                android:layout_alignParentEnd="true"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_below="@+id/textview_license_detail" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PAYMENT"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:id="@+id/textview_payment"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/relativelayout_details"
+            android:layout_marginTop="32dp"/>
+
+        <!--Card Details-->
         <com.stripe.android.view.CardInputWidget
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/textview_payment"
             android:id="@+id/card_input_widget"
-            android:layout_width="322dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             stripe:cardTextErrorColor="@android:color/holo_red_dark"
             stripe:cardTint="@android:color/holo_blue_light"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="379dp" />
+            android:layout_centerHorizontal="true"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/linearlayout_pay_details"
+            android:layout_below="@+id/card_input_widget"
+            android:layout_marginTop="16dp">
 
             <Spinner
                 android:id="@+id/CountrySpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="394dp" />
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/ZipCode"
@@ -132,11 +233,23 @@
                 android:ems="10"
                 android:hint="Zip Code"
                 android:inputType="numberDecimal"
-                android:textColorHint="@drawable/selector"
-                tools:ignore="HardcodedText" />
+                android:textColorHint="@drawable/selector" />
 
         </LinearLayout>
 
-    </LinearLayout>
+        <!--Book Button-->
+        <Button
+            android:id="@+id/BookButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/linearlayout_pay_details"
+            android:text="PAY WITH CARD"
+            android:background="@drawable/layout_rounded_corners"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginTop="16dp"/>
+    </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -6,7 +6,16 @@
     android:layout_height="match_parent"
     tools:context="com.mobewash.mobewash.booking.DateTimeActivity">
 
+    <TextView
+        android:layout_margin="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:text="PICK A DATE"
+        android:id="@+id/textview_date_detail"/>
+
     <LinearLayout
+        android:layout_below="@+id/textview_date_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/calendar1"

@@ -1,7 +1,5 @@
 package com.mobewash.mobewash.models;
 
-import com.mobewash.mobewash.booking.DetailsClass;
-
 /**
  * Created by Danny on 5/13/2017.
  */
@@ -22,37 +20,34 @@ public class BookingDataSingleton {
 
     private CompanyData companyData;
 
-    //For Company Frag
-    private String companyName = "";
+    private UserDetails userDetails;
 
-
-    ////setters////
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+    //
+    // Setters
+    //
 
     public void setCompanyData(CompanyData companyData) {
         this.companyData = companyData;
-    }
-
-    ///////getters///////
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public CompanyData getCompanyData() {
-        return this.companyData;
     }
 
     public void setService(WashService service) {
         this.service = service;
     }
 
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
 
+    //
+    // Getters
+    //
 
+    public CompanyData getCompanyData() {
+        return this.companyData;
+    }
 
-    ///////////////// DETAILSCLASS///////
-    public DetailsClass deets = new DetailsClass();
+    public UserDetails getUserDetails() {
+        return this.userDetails;
+    }
+
 }
