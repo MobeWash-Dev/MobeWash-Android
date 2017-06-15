@@ -1,4 +1,4 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.models;
 
 import com.mobewash.mobewash.models.BookingData;
 import com.mobewash.mobewash.models.CompanyData;

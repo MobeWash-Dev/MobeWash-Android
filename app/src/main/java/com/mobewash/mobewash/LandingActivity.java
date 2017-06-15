@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.facebook.login.LoginManager;
 import com.mobewash.mobewash.login.LoginActivity;
+import com.mobewash.mobewash.utils.RequestQueueSingleton;
 
 public class LandingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

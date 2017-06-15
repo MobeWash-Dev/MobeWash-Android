@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+
+import com.mobewash.mobewash.models.BookingDataSingleton;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,7 +49,7 @@ public class DetailsFragment extends Fragment {
 
     private OnDetailsFragmentInteractionListener mListener;
 
-    DataSingletonClass sharedData = DataSingletonClass.getInstance();
+    BookingDataSingleton sharedData = BookingDataSingleton.getInstance();
 
     public DetailsFragment() {
         // Required empty public constructor

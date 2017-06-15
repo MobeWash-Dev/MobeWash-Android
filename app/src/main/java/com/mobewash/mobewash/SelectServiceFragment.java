@@ -12,7 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.facebook.CallbackManager;
+import com.mobewash.mobewash.models.BookingDataSingleton;
+import com.mobewash.mobewash.models.JSONParser;
 import com.mobewash.mobewash.models.WashService;
+import com.mobewash.mobewash.utils.RestRequester;
 
 import org.json.JSONArray;
 
@@ -55,7 +58,7 @@ public class SelectServiceFragment extends android.support.v4.app.Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Service result = (Service) parent.getItemAtPosition(position);
-                DataSingletonClass.getInstance().setSelectedService(result);
+                BookingDataSingleton.getInstance().setSelectedService(result);
                 mListener.onServiceSelect();
             }
         });
@@ -83,7 +86,7 @@ public class SelectServiceFragment extends android.support.v4.app.Fragment{
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             WashService result = (WashService) parent.getItemAtPosition(position);
-                            DataSingletonClass.getInstance().setService(result);
+                            BookingDataSingleton.getInstance().setService(result);
                             mListener.onServiceSelect();
                         }
                     });

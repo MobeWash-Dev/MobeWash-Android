@@ -1,25 +1,23 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.models;
 
-import com.mobewash.mobewash.models.CompanyData;
-import com.mobewash.mobewash.models.WashService;
+import com.mobewash.mobewash.DetailsClass;
 
 /**
  * Created by Danny on 5/13/2017.
  */
 
-class DataSingletonClass {
-    private static final DataSingletonClass ourInstance = new DataSingletonClass();
+public class BookingDataSingleton {
+    private static final BookingDataSingleton ourInstance = new BookingDataSingleton();
 
-    static DataSingletonClass getInstance() {
+    static BookingDataSingleton getInstance() {
         return ourInstance;
     }
 
-    private DataSingletonClass() {
+    private BookingDataSingleton() {
     }
 
     //add all the variables for the Data we want to share here
 
-    private Service selectedService = null;
     private WashService service;
 
     private CompanyData companyData;
@@ -29,9 +27,6 @@ class DataSingletonClass {
 
 
     ////setters////
-    public void setSelectedService(Service selectedService) {
-        this.selectedService = selectedService;
-    }
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
@@ -42,10 +37,6 @@ class DataSingletonClass {
     }
 
     ///////getters///////
-
-    public Service getSelectedService() {
-        return selectedService;
-    }
 
     public String getCompanyName() {
         return companyName;

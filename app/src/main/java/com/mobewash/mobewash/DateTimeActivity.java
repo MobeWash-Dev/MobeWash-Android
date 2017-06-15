@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.mobewash.mobewash.models.BookingDataSingleton;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
@@ -38,7 +39,7 @@ public class DateTimeActivity extends AppCompatActivity implements DateTimeFragm
         args.putInt(CaldroidFragment.YEAR, cal.get(Calendar.YEAR));
         caldroidFragment.setArguments(args);
 
-        DataSingletonClass singleton = DataSingletonClass.getInstance();
+        BookingDataSingleton singleton = BookingDataSingleton.getInstance();
         int[] enabledDays = singleton.getCompanyData().getSetting().getWashDays();
         //int[] enabledDays = {2,3};
         ArrayList<String> disabledDates = addDisabledDates(enabledDays);

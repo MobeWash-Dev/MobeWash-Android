@@ -1,7 +1,6 @@
 package com.mobewash.mobewash;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.mobewash.mobewash.models.BookingDataSingleton;
 import com.mobewash.mobewash.models.CompanyData;
+import com.mobewash.mobewash.models.JSONParser;
+import com.mobewash.mobewash.utils.RestRequester;
 
 import org.json.JSONArray;
 
@@ -25,7 +26,7 @@ public class CompanyFragment extends Fragment {
     private static final String TAG = "CompanyFragment";
 
     private ListView listView;
-    DataSingletonClass sharedData = DataSingletonClass.getInstance();
+    BookingDataSingleton sharedData = BookingDataSingleton.getInstance();
 
     private OnCompanyFragmentInteractionListener mListener;
 

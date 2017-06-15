@@ -1,28 +1,25 @@
 package com.mobewash.mobewash;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.mobewash.mobewash.models.Appointment;
+import com.mobewash.mobewash.models.BookingDataSingleton;
 import com.mobewash.mobewash.models.SlotTime;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.mobewash.mobewash.utils.RestRequester;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 
 public class DateTimeFragment extends Fragment{
@@ -98,7 +95,7 @@ public class DateTimeFragment extends Fragment{
 
     private void updateList(ArrayList<Appointment> appointments) {
         ArrayList<SlotTime> slots = new ArrayList<>();
-        DataSingletonClass singleton = DataSingletonClass.getInstance();
+        BookingDataSingleton singleton = BookingDataSingleton.getInstance();
         int slotCap = singleton.getCompanyData().getSetting().getslotCap();
         int start = singleton.getCompanyData().getSetting().getStartTime();
         int end = singleton.getCompanyData().getSetting().getEndTime();
