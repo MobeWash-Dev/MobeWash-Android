@@ -2,6 +2,7 @@ package com.mobewash.mobewash.booking;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobewash.mobewash.R;
+import com.mobewash.mobewash.models.BookingDataSingleton;
+import com.mobewash.mobewash.models.CompanyData;
+import com.mobewash.mobewash.models.UserDetails;
 import com.stripe.android.model.Card;
 import com.stripe.android.view.CardInputWidget;
 
@@ -31,11 +36,6 @@ import java.util.HashMap;
  */
 public class PaymentFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     // Set up tag for logging
     public static final String TAG = "Payment Fragment";
 
@@ -51,18 +51,20 @@ public class PaymentFragment extends Fragment {
     private Card userCard;
     private CardInputWidget mCardInputWidget;
 
+    private TextView mFirstNameTextView;
+    private TextView mLastNameTextView;
+    private TextView mCompanyTextView;
+    private TextView mExtraTextView;
+    private TextView mDayOfWeekTextView;
+    private TextView mDateTextView;
+    private TextView mMakeTextView;
+    private TextView mColorTextView;
+    private TextView mLicenseTextView;
+
+
     public PaymentFragment() {
         // Required empty public constructor
     }
-
- /*   public static PaymentFragment newInstance(String param1, String param2) {
-        PaymentFragment fragment = new PaymentFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,8 +89,6 @@ public class PaymentFragment extends Fragment {
         final HashMap<String, String> countryToCode = new HashMap<String, String>();
         for(int i = 0; i < countryCode.length; i++) {
             countryToCode.put(countries[i], countryCode[i]);
-
-
         }
 
         ArrayList<String> spinnerArray = new ArrayList<String>(Arrays.asList(countries));
@@ -149,7 +149,33 @@ public class PaymentFragment extends Fragment {
             }
         });
 
+        mFirstNameTextView = (TextView) view.findViewById(R.id.textview_firstname);
+        mLastNameTextView = (TextView) view.findViewById(R.id.textview_lastname);
+        mCompanyTextView = (TextView) view.findViewById(R.id.textview_company);
+        mExtraTextView = (TextView) view.findViewById(R.id.textview_extra);
+        mDayOfWeekTextView = (TextView) view.findViewById(R.id.textview_dayofweek);
+        mDateTextView = (TextView) view.findViewById(R.id.textview_date);
+        mMakeTextView = (TextView) view.findViewById(R.id.textview_make);
+        mColorTextView = (TextView) view.findViewById(R.id.textview_color);
+        mLicenseTextView = (TextView) view.findViewById(R.id.textview_license);
+
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        BookingDataSingleton singleton = BookingDataSingleton.getInstance();
+        UserDetails userDetails = singleton.getUserDetails();
+        CompanyData companyData = singleton.getCompanyData();
+        mFirstNameTextView.setText(userDetails.getFirstName());
+        mLastNameTextView.setText(userDetails.getLastName());
+        mCompanyTextView.setText(companyData.getName());
+        mExtraTextView.setText(userDetails.getExtras());
+        // TODO Day of Week and Date
+        mMakeTextView.setText(userDetails.getCarMake());
+        mColorTextView.setText(userDetails.getCarColor());
+        mLicenseTextView.setText(userDetails.getLicense());
     }
 
     public interface OnPaymentFragmentInteractionListener {

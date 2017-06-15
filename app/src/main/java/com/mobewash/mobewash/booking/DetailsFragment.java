@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.mobewash.mobewash.R;
 import com.mobewash.mobewash.models.BookingDataSingleton;
+import com.mobewash.mobewash.models.UserDetails;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -100,15 +101,16 @@ public class DetailsFragment extends Fragment {
 
         mNextButton = (Button) view.findViewById(R.id.button_next);
 
-
-        FirstNameText.setText(sharedData.deets.getFirstName());
-        LastNameText.setText(sharedData.deets.getLastName());
-        PhoneText.setText(sharedData.deets.getPhone());
-        EmailText.setText(sharedData.deets.getEmail());
-        MakeText.setText(sharedData.deets.getCarMake());
-        ColorText.setText(sharedData.deets.getCarColor());
-        LicenseText.setText(sharedData.deets.getLicense());
-        ExtrasText.setText(sharedData.deets.getExtras());
+        UserDetails userDetails = new UserDetails();
+        FirstNameText.setText(userDetails.getFirstName());
+        LastNameText.setText(userDetails.getLastName());
+        PhoneText.setText(userDetails.getPhone());
+        EmailText.setText(userDetails.getEmail());
+        MakeText.setText(userDetails.getCarMake());
+        ColorText.setText(userDetails.getCarColor());
+        LicenseText.setText(userDetails.getLicense());
+        ExtrasText.setText(userDetails.getExtras());
+        sharedData.setUserDetails(userDetails);
 
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,14 +160,14 @@ public class DetailsFragment extends Fragment {
 
                 if (!hasError) {
                     mListener.onDetailsFragmentInteraction();
-                    sharedData.deets.setFirstName(FirstNameText.getText().toString());
-                    sharedData.deets.setLastName(LastNameText.getText().toString());
-                    sharedData.deets.setPhone(PhoneText.getText().toString());
-                    sharedData.deets.setEmail(EmailText.getText().toString());
-                    sharedData.deets.setCarMake(MakeText.getText().toString());
-                    sharedData.deets.setCarColor(ColorText.getText().toString());
-                    sharedData.deets.setLicense(LicenseText.getText().toString());
-                    sharedData.deets.setExtras(ExtrasText.getText().toString());
+                    sharedData.getUserDetails().setFirstName(FirstNameText.getText().toString());
+                    sharedData.getUserDetails().setLastName(LastNameText.getText().toString());
+                    sharedData.getUserDetails().setPhone(PhoneText.getText().toString());
+                    sharedData.getUserDetails().setEmail(EmailText.getText().toString());
+                    sharedData.getUserDetails().setCarMake(MakeText.getText().toString());
+                    sharedData.getUserDetails().setCarColor(ColorText.getText().toString());
+                    sharedData.getUserDetails().setLicense(LicenseText.getText().toString());
+                    sharedData.getUserDetails().setExtras(ExtrasText.getText().toString());
                 }
                 //mListener.onDetailsFragmentInteraction();
             }

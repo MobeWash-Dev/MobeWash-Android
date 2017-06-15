@@ -81,7 +81,6 @@ public class CompanyFragment extends Fragment {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
                             // Your code for item clicks
-                            sharedData.setCompanyName(companies.get(pos).getName());
                             sharedData.setCompanyData(companies.get(pos));
                             mListener.onCompanySelected();
                         }
