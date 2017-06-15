@@ -63,9 +63,7 @@ public class LoginActivity extends AppCompatActivity
         // Check if user is already logged in with Facebook
         AccessToken token = AccessToken.getCurrentAccessToken();
         if (token != null) {
-            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(mainIntent);
-            finish();
+            finishLogin();
         }
 
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar_login);
