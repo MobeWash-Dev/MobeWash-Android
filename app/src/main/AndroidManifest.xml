@@ -46,6 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".booking.PaymentActivity"
             android:windowSoftInputMode="adjustPan">
@@ -53,40 +54,45 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".booking.DetailsActivity" />
         </activity>
+
         <activity android:name=".booking.DetailsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".booking.DateTimeActivity" />
         </activity>
+
         <activity android:name=".booking.CompanyActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LandingActivity" />
         </activity>
+
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LandingActivity" />
         </activity>
+
         <activity
             android:name=".LandingActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
         <activity
             android:name=".booking.DateTimeActivity">
-            <!--android:label="@string/title_activity_date_time2"
-            android:theme="@style/AppTheme.NoActionBar">-->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".booking.SelectServiceActivity" />
         </activity>
+
         <activity android:name=".booking.SelectServiceActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".booking.CompanyActivity" />
         </activity>
+
         <activity android:name=".booking.BookedActivity" />
     </application>
 
