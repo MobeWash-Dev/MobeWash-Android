@@ -2,8 +2,6 @@ package com.mobewash.mobewash;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import com.facebook.login.LoginManager;
+import com.mobewash.mobewash.login.LoginActivity;
 
 public class LandingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

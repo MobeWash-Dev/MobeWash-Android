@@ -37,7 +37,7 @@
 
         <!-- Our Activities -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,7 +55,7 @@
         <activity android:name=".DetailsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DateTimeActivity2" />
+                android:value=".DateTimeActivity" />
         </activity>
         <activity android:name=".CompanyActivity">
             <meta-data
@@ -74,7 +74,7 @@
 
         </activity>
         <activity
-            android:name=".DateTimeActivity2">
+            android:name=".DateTimeActivity">
             <!--android:label="@string/title_activity_date_time2"
             android:theme="@style/AppTheme.NoActionBar">-->
             <meta-data

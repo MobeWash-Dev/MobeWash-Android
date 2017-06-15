@@ -1,90 +1,99 @@
-package com.mobewash.mobewash;
+package com.mobewash.mobewash.login;
 
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mobewash.mobewash.R;
+import com.mobewash.mobewash.dummylogin.DummyLoginServer;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignupFragment extends Fragment {
+public class EmailLoginFragment extends Fragment {
+
+    private static final String TAG = "EmailLoginFragment";
 
     //
     // Member Variables
     //
-    private OnSignupFragmentInteractionListener mListener;
+    private OnEmailLoginFragmentInteractionListener mListener;
 
-    //
-    // Sign up
-    //
+    private Button mLoginButton;
     private EditText mEmailEditText;
     private EditText mPasswordEditText;
-    private Button mSignUpButton;
 
-    public SignupFragment() {
+    public EmailLoginFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_signup, container, false);
-        mEmailEditText = (EditText) view.findViewById(R.id.edittext_signup_email);
-        mPasswordEditText = (EditText) view.findViewById(R.id.edittext_signup_password);
-        mSignUpButton = (Button) view.findViewById(R.id.button_signup);
+        View view = inflater.inflate(R.layout.fragment_email_login, container, false);
+        mLoginButton = (Button) view.findViewById(R.id.button_login);
+        mEmailEditText = (EditText) view.findViewById(R.id.edittext_login_email);
+        mPasswordEditText = (EditText) view.findViewById(R.id.edittext_login_password);
         mPasswordEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
         mPasswordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (event == null) {
                     if (actionId == EditorInfo.IME_ACTION_GO) {
-                        attemptSignUp();
+                        attemptLogin();
                     }
                 }
                 return false;
             }
         });
 
-        mSignUpButton.setOnClickListener(new View.OnClickListener() {
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                attemptSignUp();
+                attemptLogin();
             }
         });
         return view;
     }
 
-    private void attemptSignUp() {
+    private void attemptLogin() {
         String email = mEmailEditText.getText().toString();
         String password = mPasswordEditText.getText().toString();
         if (loginIsValid(email, password)) {
-            mListener.onSignup(email, password);
+            mListener.onEmailLogin(email, password);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnSignupFragmentInteractionListener) {
-            mListener = (OnSignupFragmentInteractionListener) context;
+        if (context instanceof OnEmailLoginFragmentInteractionListener) {
+            mListener = (OnEmailLoginFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnEmailLoginFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
     private boolean loginIsValid(String email, String password) {
@@ -96,14 +105,8 @@ public class SignupFragment extends Fragment {
         return emailValid && passwordValid;
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnSignupFragmentInteractionListener {
-        void onSignup(String email, String password);
+    public interface OnEmailLoginFragmentInteractionListener {
+        void onEmailLogin(String email, String password);
     }
 
 }

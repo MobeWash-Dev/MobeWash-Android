@@ -14,7 +14,7 @@ public class SelectServiceActivity extends AppCompatActivity implements SelectSe
 
     @Override
     public void onServiceSelect() {
-        Intent calendarIntent = new Intent(SelectServiceActivity.this, DateTimeActivity2.class);
+        Intent calendarIntent = new Intent(SelectServiceActivity.this, DateTimeActivity.class);
         startActivity(calendarIntent);
     }
 }

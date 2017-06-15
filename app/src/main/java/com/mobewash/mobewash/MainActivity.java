@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.facebook.login.LoginManager;
+import com.mobewash.mobewash.login.LoginActivity;
 import com.stripe.android.model.Card;
 
 public class MainActivity extends AppCompatActivity

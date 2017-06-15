@@ -3,7 +3,6 @@ package com.mobewash.mobewash;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -19,14 +18,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFragment.OnDateTimeFragmentInteractionListener {
+public class DateTimeActivity extends AppCompatActivity implements DateTimeFragment.OnDateTimeFragmentInteractionListener {
 
     private DateTimeFragment mDateTimeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_date_time2);
+        setContentView(R.layout.activity_date_time);
 
 
         final CaldroidFragment caldroidFragment = new CaldroidFragment();
@@ -63,7 +62,7 @@ public class DateTimeActivity2 extends AppCompatActivity implements DateTimeFrag
                 caldroidFragment.setSelectedDate(date);
                 caldroidFragment.refreshView();
 
-                //Intent detailsIntent = new Intent(DateTimeActivity2.this, DetailsActivity.class);
+                //Intent detailsIntent = new Intent(DateTimeActivity.this, DetailsActivity.class);
                 //startActivity(detailsIntent);
 
                 Calendar calendar = Calendar.getInstance();
